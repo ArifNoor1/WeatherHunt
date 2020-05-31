@@ -29,8 +29,6 @@
            android:layout_below="@+id/tv_selectCardDate"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
-           android:layout_marginTop="21dp"
-           android:layout_marginBottom="27dp"
            android:orientation="horizontal"/>
 
        <TextView
@@ -41,28 +39,6 @@
            android:layout_below="@id/rv_weatherCards"
            android:text="@string/recentUpdateLabel"/>
 
-       <androidx.recyclerview.widget.RecyclerView
-           android:id="@+id/rv_newsCards"
-           android:layout_below="@+id/tv_recentUpdateLabel"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_marginTop="11dp"
-           android:layout_marginBottom="27dp"
-           android:orientation="vertical"/>
-
-       <TextView
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:id="@+id/tv_covidUpdateLabel"
-           android:textSize="@dimen/smallFontSize"
-           android:layout_below="@id/rv_newsCards"
-           android:text="@string/covidUpdateLabel"/>
-
    </RelativeLayout>
 
 </FrameLayout>
-
-
-
-
-

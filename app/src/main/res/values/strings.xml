@@ -1,9 +1,4 @@
 <resources>
     <string name="app_name">WeatherHunt</string>
     <string name="recentUpdateLabel">Recent Updates</string>
-    <string name="covidUpdateLabel">COVID 19 Updates</string>
-
-    <!-- To be deleted in production   -->
-    <string name="sampleNewsTitle">World Economy is on the biggest crisis to deal with the economy</string>
-    <string name="sampleNewsDesc">UN chief Antonio Guterres has warned that the COVID-19 pandemic will cause unimaginable devastation, usher in hunger and famine of historic proportions and lead to a loss of USD 8.5 trillion in global output — the sharpest contraction since the Great Depression — if nations did not respond with unity and solidarity.</string>
 </resources>
