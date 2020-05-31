@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">WeatherHunt</string>
+    <string name="recentUpdateLabel">Recent Updates</string>
 </resources>
