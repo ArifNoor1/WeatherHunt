@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">WeatherHunt</string>
     <string name="recentUpdateLabel">Recent Updates</string>
-
+    <string name="covidUpdateLabel">COVID 19 Updates</string>
 
     <!-- To be deleted in production   -->
     <string name="sampleNewsTitle">World Economy is on the biggest crisis to deal with the economy</string>
