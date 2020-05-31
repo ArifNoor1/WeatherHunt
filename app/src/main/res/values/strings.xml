@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">WeatherHunt</string>
     <string name="recentUpdateLabel">Recent Updates</string>
+    <string name="covidUpdateLabel">COVID 19 Updates</string>
 </resources>
