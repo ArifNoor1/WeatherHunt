@@ -5,9 +5,63 @@
     android:layout_height="match_parent"
     tools:context=".fragments.NewsFragment">
 
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:id="@+id/iv_newsBanner"/>
+            <RelativeLayout
+                android:id="@+id/rl_sourceBanner"
+                android:layout_height="50dp"
+                android:layout_width="match_parent"
+                android:layout_below="@+id/iv_newsBanner"
+                android:background="@color/lightBackground"
+                android:padding="@dimen/margin">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="CNN"
+                    android:textSize="@dimen/largeFontSize"
+                    android:layout_centerVertical="true"
+
+                    />
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_bookmark"
+                    android:id="@+id/btn_bookmark"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_margin="@dimen/margin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_newsTitle"
+                android:layout_below="@+id/rl_sourceBanner"
+                android:textSize="@dimen/veryLargeFontSize"
+                android:text="@string/sampleNewsTitle"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/margin"
+                android:layout_marginLeft="@dimen/margin"
+                android:id="@+id/tv_newsDescription"
+                android:textSize="@dimen/mediumFontSize"
+                android:text="@string/sampleNewsDesc"
+                android:layout_below="@+id/tv_newsTitle"/>
+
+        </RelativeLayout>
+    </ScrollView>
 
 </FrameLayout>
