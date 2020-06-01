@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="251dp"
+    android:orientation="horizontal"
+    android:layout_height="135dp">
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view"
+        xmlns:card_view="https://schemas.android.com/apk/res-auto"
+        android:layout_width="251dp"
+        android:layout_height="135dp"
+        card_view:cardCornerRadius="10dp"
+        card_view:cardElevation="5dp"
+        card_view:cardUseCompatPadding="true">
+
+        <RelativeLayout
+            android:background="@drawable/corner_weather"
+            android:layout_width="251dp"
+            android:layout_height="135dp">
+            <TextView
+                android:id="@+id/tv_mostly_sunny"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mostly Sunny"
+                android:textSize="@dimen/mediumFontSize"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"/>
+            <TextView
+                android:id="@+id/tv_degree_celcius"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_mostly_sunny"
+                android:text="25 °C"
+                android:textSize="@dimen/veryLargeFontSize"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="0dp"/>
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+
+</RelativeLayout>

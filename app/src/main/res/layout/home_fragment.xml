@@ -53,7 +53,7 @@
        <TextView
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
-           android:id="@+id/tv_covidUpdateLabeltwo"
+           android:id="@+id/tv_covidUpdateLabel"
            android:textSize="@dimen/smallFontSize"
            android:layout_below="@id/rv_newsCards"
            android:text="@string/covidUpdateLabel"/>
