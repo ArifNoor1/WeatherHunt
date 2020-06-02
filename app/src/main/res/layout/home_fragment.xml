@@ -1,66 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".fragments.HomeFragment"
-    android:layout_margin="@dimen/margin">
+<layout>
+    <data>
+        <variable
+            name="vm"
+            type="com.devadilarif.weatherhunt.viewmodels.HomeFragmentViewModel" />
+    </data>
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".fragments.HomeFragment"
+        android:layout_margin="@dimen/margin">
 
-   <RelativeLayout
-       android:layout_width="match_parent"
-       android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-       <TextView
-           android:id="@+id/tv_selectCardDay"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:text="Today"
-           android:textSize="@dimen/largeFontSize"/>
+            <TextView
+                android:id="@+id/tv_selectCardDay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Today"
+                android:textSize="@dimen/largeFontSize"/>
 
-       <TextView
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:id="@+id/tv_selectCardDate"
-           android:layout_below="@+id/tv_selectCardDay"
-           android:text="Wed, 20 April"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_selectCardDate"
+                android:layout_below="@+id/tv_selectCardDay"
+                android:text="Wed, 20 April"/>
 
-       <androidx.recyclerview.widget.RecyclerView
-           android:id="@+id/rv_weatherCards"
-           android:layout_below="@+id/tv_selectCardDate"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_marginTop="21dp"
-           android:layout_marginBottom="27dp"
-           android:orientation="horizontal"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_weatherCards"
+                android:layout_below="@+id/tv_selectCardDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="21dp"
+                android:layout_marginBottom="27dp"
+                android:orientation="horizontal"/>
 
-       <TextView
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:id="@+id/tv_recentUpdateLabel"
-           android:textSize="@dimen/smallFontSize"
-           android:layout_below="@id/rv_weatherCards"
-           android:text="@string/recentUpdateLabel"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_recentUpdateLabel"
+                android:textSize="@dimen/smallFontSize"
+                android:layout_below="@id/rv_weatherCards"
+                android:text="@string/recentUpdateLabel"/>
 
-       <androidx.recyclerview.widget.RecyclerView
-           android:id="@+id/rv_newsCards"
-           android:layout_below="@+id/tv_recentUpdateLabel"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_marginTop="11dp"
-           android:layout_marginBottom="27dp"
-           android:orientation="vertical"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_newsCards"
+                android:layout_below="@+id/tv_recentUpdateLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="11dp"
+                android:layout_marginBottom="27dp"
+                android:orientation="vertical"/>
 
-       <TextView
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:id="@+id/tv_covidUpdateLabel"
-           android:textSize="@dimen/smallFontSize"
-           android:layout_below="@id/rv_newsCards"
-           android:text="@string/covidUpdateLabel"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_covidUpdateLabel"
+                android:textSize="@dimen/smallFontSize"
+                android:layout_below="@id/rv_newsCards"
+                android:text="@string/covidUpdateLabel"/>
 
-   </RelativeLayout>
+        </RelativeLayout>
 
-</FrameLayout>
+    </FrameLayout>
+</layout>
+
 
 
 

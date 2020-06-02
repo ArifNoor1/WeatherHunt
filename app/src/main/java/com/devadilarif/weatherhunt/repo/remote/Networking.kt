@@ -11,6 +11,12 @@ import java.util.concurrent.TimeUnit
 
 object Networking {
 
+    val NETWORK_CALL_TIMEOUT = 60
+
+    val WEATHER_BASE_URL = "https://api.openweathermap.org/data/2.5"
+    val NEWS_BASE_URL =  "http://newsapi.org/v2"
+    val COVID_19_BASE_URL = "https://corona-virus-stats.herokuapp.com/api/v1"
+
     fun create(baseUrl: String, cacheDir: File, cacheSize: Long): NetworkService{
         return Retrofit.Builder()
             .baseUrl(baseUrl)
