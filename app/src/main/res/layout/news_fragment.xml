@@ -17,6 +17,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 android:id="@+id/iv_newsBanner"/>
+
             <RelativeLayout
                 android:id="@+id/rl_sourceBanner"
                 android:layout_height="50dp"
@@ -52,14 +53,15 @@
                 android:text="@string/sampleNewsTitle"/>
 
             <TextView
+                android:id="@+id/tv_newsDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/margin"
+                android:layout_below="@+id/tv_newsTitle"
                 android:layout_marginLeft="@dimen/margin"
-                android:id="@+id/tv_newsDescription"
-                android:textSize="@dimen/mediumFontSize"
+                android:layout_marginRight="@dimen/margin"
+                android:lineSpacingExtra="10sp"
                 android:text="@string/sampleNewsDesc"
-                android:layout_below="@+id/tv_newsTitle"/>
+                android:textSize="@dimen/largeFontSize" />
 
         </RelativeLayout>
     </ScrollView>

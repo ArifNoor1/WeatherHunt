@@ -1,48 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+
+
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="251dp"
-    android:orientation="horizontal"
-    android:layout_height="135dp">
+    xmlns:card_view="http://schemas.android.com/tools"
+    android:id="@+id/card_view"
+    android:layout_width="250dp"
+    android:layout_height="120dp"
+    android:layout_margin="@dimen/margin"
+    app:cardCornerRadius="19dp"
+    app:cardElevation="10dp">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card_view"
-        xmlns:card_view="https://schemas.android.com/apk/res-auto"
-        android:layout_width="251dp"
-        android:layout_height="135dp"
-        card_view:cardCornerRadius="10dp"
-        card_view:cardElevation="5dp"
-        card_view:cardUseCompatPadding="true">
+        android:background="@drawable/corner_weather">
 
-        <RelativeLayout
-            android:background="@drawable/corner_weather"
-            android:layout_width="251dp"
-            android:layout_height="135dp">
-            <TextView
-                android:id="@+id/tv_mostly_sunny"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Mostly Sunny"
-                android:textSize="@dimen/mediumFontSize"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"/>
-            <TextView
-                android:id="@+id/tv_degree_celcius"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_mostly_sunny"
-                android:text="25 °C"
-                android:textSize="@dimen/veryLargeFontSize"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="0dp"/>
+        <TextView
+            android:id="@+id/tv_mostly_sunny"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:text="Mostly Sunny"
+            android:textSize="@dimen/mediumFontSize" />
 
-        </RelativeLayout>
+        <TextView
+            android:id="@+id/tv_degree_celcius"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_mostly_sunny"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="0dp"
+            android:text="25 °C"
+            android:textSize="@dimen/veryLargeFontSize" />
 
-    </androidx.cardview.widget.CardView>
+    </RelativeLayout>
 
-
-
-</RelativeLayout>
+</androidx.cardview.widget.CardView>
