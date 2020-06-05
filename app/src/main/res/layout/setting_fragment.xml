@@ -1,95 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
-    <data>
-        <variable
-            name="VM"
-            type="com.devadilarif.weatherhunt.viewmodels.SettingFragmentViewModel" />
-    </data>
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.SettingFragment">
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".fragments.SettingFragment">
+        android:layout_height="match_parent">
 
-        <RelativeLayout
+        <TextView
+            android:id="@+id/tv_settings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Settings"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:textSize="@dimen/largeFontSize"/>
+        <TextView
+            android:id="@+id/tv_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_settings"
+            android:text="Location"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="30dp"
+            android:textSize="@dimen/mediumFontSize"/>
+        <TextView
+            android:id="@+id/tv_location_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_location"
+            android:text="  Kadugudi, whitefield Bangalore, Karnataka"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="30dp"
+            android:textSize="@dimen/smallFontSize"/>
+        <TextView
+            android:id="@+id/tv_change"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/tv_location_icon"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="5dp"
+            android:layout_below="@id/tv_location"
+            android:text="Change"
+            android:textSize="@dimen/smallFontSize"/>
+        <TextView
+            android:id="@+id/tv_notification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_location_icon"
+            android:text="Notification"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="30dp"
+            android:textSize="@dimen/mediumFontSize"/>
+        <TextView
+            android:id="@+id/tv_notification_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_notification"
+            android:text="  Enable notification news"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="30dp"
+            android:textSize="@dimen/smallFontSize"/>
+        <TextView
+            android:id="@+id/tv_bookmark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_notification_icon"
+            android:text="Bookmark"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="10dp"
+            android:textSize="@dimen/largeFontSize"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_bookmark"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/tv_settings"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Settings"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="10dp"
-                android:textSize="@dimen/largeFontSize"/>
-            <TextView
-                android:id="@+id/tv_location"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_settings"
-                android:text="Location"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="30dp"
-                android:textSize="@dimen/mediumFontSize"/>
-            <TextView
-                android:id="@+id/tv_location_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_location"
-                android:text="  Kadugudi, whitefield Bangalore, Karnataka"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="30dp"
-                android:textSize="@dimen/smallFontSize"/>
-            <TextView
-                android:id="@+id/tv_change"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/tv_location_icon"
-                android:layout_marginLeft="40dp"
-                android:layout_marginTop="5dp"
-                android:layout_below="@id/tv_location"
-                android:text="Change"
-                android:textSize="@dimen/smallFontSize"/>
-            <TextView
-                android:id="@+id/tv_notification"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_location_icon"
-                android:text="Notification"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="30dp"
-                android:textSize="@dimen/mediumFontSize"/>
-            <TextView
-                android:id="@+id/tv_notification_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_notification"
-                android:text="  Enable notification news"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="30dp"
-                android:textSize="@dimen/smallFontSize"/>
-            <TextView
-                android:id="@+id/tv_bookmark"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_notification_icon"
-                android:text="Bookmark"
-                android:layout_marginTop="30dp"
-                android:layout_marginLeft="10dp"
-                android:textSize="@dimen/largeFontSize"/>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_view_bookmark"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_bookmark"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp">
-            </androidx.recyclerview.widget.RecyclerView>
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_bookmark"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp">
+        </androidx.recyclerview.widget.RecyclerView>
 
 
-        </RelativeLayout>
+    </RelativeLayout>
 
-    </FrameLayout>
-</layout>
+</FrameLayout>
