@@ -1,5 +1,8 @@
 package com.devadilarif.weatherhunt.repo.local.model
 
+import androidx.room.Entity
+
+@Entity
 data class DailyForcast(
     val clouds: Int,
     val dew_point: Double,

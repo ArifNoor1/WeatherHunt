@@ -1,5 +1,9 @@
 package com.devadilarif.weatherhunt.repo.local.model
 
+import androidx.room.Entity
+
+
+@Entity
 data class COVID19(
     val active_cases_critical_percentage: String,
     val active_cases_mild_percentage: String,
