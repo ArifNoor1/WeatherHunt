@@ -1,6 +1,6 @@
 package com.devadilarif.weatherhunt.repo.local.model
 
-data class ForcastResponse(
+data class ForecastResponse(
     var lat : Double,
     var lon : Double,
     var timezone : String,

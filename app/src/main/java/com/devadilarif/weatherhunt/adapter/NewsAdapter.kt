@@ -6,29 +6,34 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.devadilarif.weatherhunt.R
 import com.devadilarif.weatherhunt.databinding.NewsItemBinding
-import com.devadilarif.weatherhunt.databinding.WeatherItemBinding
+import com.devadilarif.weatherhunt.repo.local.model.News
 
-class NewsAdapter  : RecyclerView.Adapter<NewsAdapter.NewsViewHolder> (){
+class NewsAdapter(val topHeadlines : List<News>)  : RecyclerView.Adapter<NewsAdapter.NewsItemViewHolder> (){
 
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsItemViewHolder {
         val binding = DataBindingUtil.inflate<NewsItemBinding>(
             LayoutInflater.from(parent.context),
             R.layout.news_item, parent, false)
-        return NewsViewHolder(binding)
+        return NewsItemViewHolder(binding)
     }
 
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        return topHeadlines.size
     }
 
-    override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
-        TODO("Not yet implemented")
+    override fun onBindViewHolder(holder: NewsItemViewHolder, position: Int) {
+        holder.onBind(topHeadlines[position])
+
+
     }
 
-    inner class NewsViewHolder(var newsDataBinding : NewsItemBinding)
+    inner class NewsItemViewHolder(var newsDataBinding : NewsItemBinding)
         : RecyclerView.ViewHolder(newsDataBinding.root) {
 
+        fun onBind(news : News){
+
+        }
     }
 }

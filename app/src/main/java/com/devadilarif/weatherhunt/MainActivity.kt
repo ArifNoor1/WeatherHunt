@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity() , TabLayout.OnTabSelectedListener {
         setContentView(R.layout.activity_main)
         tabLayout.addOnTabSelectedListener(this)
         showFragment(HomeFragment())
+
     }
 
 

@@ -1,5 +1,10 @@
 package com.devadilarif.weatherhunt.repo.local.model
 
+import android.widget.ImageView
+import androidx.databinding.BindingAdapter
+import com.devadilarif.weatherhunt.R
+import com.squareup.picasso.Picasso
+
 data class News(
     val author: String,
     val content: String,
@@ -9,4 +14,12 @@ data class News(
     val title: String,
     val url: String,
     val urlToImage: String
-)
+){
+
+    companion object{
+        @BindingAdapter("imageUrl")
+        fun loadImage(newsImageUrl: String, imageView : ImageView){
+            Picasso.get().load(newsImageUrl).into(imageView)
+        }
+    }
+}

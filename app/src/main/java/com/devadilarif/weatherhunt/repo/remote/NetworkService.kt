@@ -1,7 +1,7 @@
 package com.devadilarif.weatherhunt.repo.remote
 
 import com.devadilarif.weatherhunt.repo.local.model.Covid19Response
-import com.devadilarif.weatherhunt.repo.local.model.ForcastResponse
+import com.devadilarif.weatherhunt.repo.local.model.ForecastResponse
 import com.devadilarif.weatherhunt.repo.local.model.NewsResponse
 import com.devadilarif.weatherhunt.repo.local.model.WeatherResponse
 import io.reactivex.Single
@@ -23,7 +23,7 @@ interface NetworkService {
         @Query("lon") longitude : Double,
         @Query("exclude") excluded : String = "hourly,current",
         @Query("appid") appId : String = EndPoints.WEATHER_API_KEY
-    ) : Single<ForcastResponse>
+    ) : Single<ForecastResponse>
 
     @GET(EndPoints.NEWS_ENDPOINT)
     fun queryTopHeadlines(

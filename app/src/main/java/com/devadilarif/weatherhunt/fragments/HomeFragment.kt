@@ -1,5 +1,6 @@
 package com.devadilarif.weatherhunt.fragments
 
+import android.content.Context
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -26,6 +27,20 @@ class HomeFragment : Fragment() {
     ): View? {
         binding = DataBindingUtil.inflate(LayoutInflater.from(context),R.layout.home_fragment,container,false)
         return binding.root
+    }
+
+
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

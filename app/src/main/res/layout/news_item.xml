@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
 
+    <data>
+        <variable
+            name="news"
+            type="com.devadilarif.weatherhunt.repo.local.model.News" />
+    </data>
     <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
@@ -20,10 +25,10 @@
                 android:layout_marginLeft="13dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:src="@drawable/ic_news_place_holder"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:imageUrl="@{news.urlToImage}"/>
 
             <TextView
                 android:id="@+id/tv_newsTitle"
@@ -32,8 +37,8 @@
                 android:layout_marginStart="9dp"
                 android:layout_marginLeft="9dp"
                 android:layout_marginTop="10dp"
-                android:maxLines="2"
-                android:text="Cure.fit fires 1000 of it’s employees"
+                android:maxLines="1"
+                android:text="@{news.title}"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/imageView"
@@ -46,7 +51,7 @@
                 android:layout_marginStart="9dp"
                 android:layout_marginLeft="9dp"
                 android:maxLines="2"
-                android:text="@string/news"
+                android:text="@{news.description}"
                 android:textSize="8sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/imageView"
