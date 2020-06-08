@@ -18,7 +18,7 @@ data class News(
 
     companion object{
         @BindingAdapter("imageUrl")
-        fun loadImage(newsImageUrl: String, imageView : ImageView){
+        fun loadImage(imageView : ImageView, newsImageUrl: String){
             Picasso.get().load(newsImageUrl).into(imageView)
         }
     }
