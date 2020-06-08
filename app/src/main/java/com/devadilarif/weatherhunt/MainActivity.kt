@@ -8,6 +8,7 @@ import com.devadilarif.weatherhunt.fragments.NewsFragment
 import com.devadilarif.weatherhunt.fragments.SettingFragment
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.activity_main.*
+import timber.log.Timber
 
 class MainActivity : AppCompatActivity() , TabLayout.OnTabSelectedListener {
 
@@ -17,25 +18,28 @@ class MainActivity : AppCompatActivity() , TabLayout.OnTabSelectedListener {
         setContentView(R.layout.activity_main)
         tabLayout.addOnTabSelectedListener(this)
         showFragment(HomeFragment())
+        Timber.plant(Timber.DebugTree())
 
     }
 
 
 
     override fun onTabReselected(p0: TabLayout.Tab?) {
+        Timber.d("onTabReselected ${p0?.position}")
 
     }
 
 
     private fun showFragment(fragment : Fragment){
-        supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer,fragment)
+        supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer,fragment).commit()
     }
 
     override fun onTabUnselected(p0: TabLayout.Tab?) {
-        TODO("Not yet implemented")
+        Timber.d("onTabUnselected ${p0?.position}")
     }
 
     override fun onTabSelected(p0: TabLayout.Tab?) {
+        Timber.d("onTabSelected ${p0?.position}")
         when(p0?.position){
             0 -> showFragment(HomeFragment())
             1-> showFragment(NewsFragment())
