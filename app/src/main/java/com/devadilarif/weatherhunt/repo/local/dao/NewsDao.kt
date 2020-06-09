@@ -19,8 +19,4 @@ interface NewsDao {
     @Query("SELECT * FROM News ORDER BY timeStamp DESC LIMIT 3")
     fun getTopNews(): Single<List<News>>
 
-
-
-
-
 }

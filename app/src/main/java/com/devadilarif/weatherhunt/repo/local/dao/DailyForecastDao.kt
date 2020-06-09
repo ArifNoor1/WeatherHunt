@@ -15,5 +15,5 @@ interface DailyForecastDao {
     @Query("SELECT * FROM DailyForcast ORDER BY dt LIMIT 7")
     fun getWeeklyForecast(): Single<List<DailyForcast>>
 
-    
+
 }
