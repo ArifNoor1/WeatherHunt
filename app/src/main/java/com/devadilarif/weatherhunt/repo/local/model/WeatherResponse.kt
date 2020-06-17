@@ -2,45 +2,61 @@ package com.devadilarif.weatherhunt.repo.local.model
 
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
+import androidx.room.Embedded
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import java.text.SimpleDateFormat
 
+@Entity
 data class WeatherResponse(
-    val base: String,
-    val clouds: Clouds,
-    val cod: Int,
-    val coord: Coord,
-    val dt: Int,
-    val id: Int,
-    val main: Main,
-    val name: String,
-    val sys: Sys,
-    val timezone: Int,
+    var base: String,
 
-    val weather: List<Weather>,
-    val wind: Wind,
+    @Embedded
+    var clouds: Clouds,
+    var cod: Int,
+
+    @Embedded
+    var coord: Coord,
+
+    @PrimaryKey
+    var dt: Int,
+    var id: Int,
+
+    @Embedded
+    var main: Main,
+    var name: String,
+
+    @Embedded
+    var sys: Sys,
+    var timezone: Int,
+
+    var weather: List<Weather>,
+
+    @Embedded
+    var wind: Wind,
 
 
     var lastFetchedTime : String
 ){
     data class Clouds(
-        val all: Int
+        var all: Int
     )
 
     data class Coord(
-        val lat: Double,
-        val lon: Double
+        var lat: Double,
+        var lon: Double
     )
 
     data class Main(
-        val feels_like: Double,
-        val grnd_level: Int,
-        val humidity: Int,
-        val pressure: Int,
-        val sea_level: Int,
-        val temp: Double,
-        val temp_max: Double,
-        val temp_min: Double
+        var feels_like: Double,
+        var grnd_level: Int,
+        var humidity: Int,
+        var pressure: Int,
+        var sea_level: Int,
+        var temp: Double,
+        var temp_max: Double,
+        var temp_min: Double
     ){
         fun getTempInCelcius(): String{
             return (temp - ("273.15").toFloat()).toString()
@@ -48,22 +64,22 @@ data class WeatherResponse(
     }
 
     data class Sys(
-        val country: String,
-        val sunrise: Int,
-        val sunset: Int
+        var country: String,
+        var sunrise: Int,
+        var sunset: Int
     )
 
 
 
 
     data class Wind(
-        val deg: Int,
-        val speed: Double
+        var deg: Int,
+        var speed: Double
     )
 
      fun updateLastFetchedTime(){
-        val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
-        val formattedDate: String = dateFormat.format(System.currentTimeMillis())
+        var dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+        var formattedDate: String = dateFormat.format(System.currentTimeMillis())
         lastFetchedTime = formattedDate
     }
 }

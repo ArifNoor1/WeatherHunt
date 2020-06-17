@@ -6,7 +6,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.devadilarif.weatherhunt.R
 import com.devadilarif.weatherhunt.databinding.WeatherItemBinding
-import com.devadilarif.weatherhunt.repo.local.model.DailyForcast
+import com.devadilarif.weatherhunt.repo.local.model.Forcast
 import com.devadilarif.weatherhunt.repo.local.model.ForecastResponse
 
 class WeatherForecastAdapter(val forecastResponse: ForecastResponse) :
@@ -29,8 +29,8 @@ class WeatherForecastAdapter(val forecastResponse: ForecastResponse) :
     inner class WeatherForcastViewHolder(val weatherForcastDataBinding : WeatherItemBinding)
         : RecyclerView.ViewHolder(weatherForcastDataBinding.root) {
 
-        fun onBind(dailyForcast : DailyForcast){
-            weatherForcastDataBinding.weatherResponse = dailyForcast
+        fun onBind(forcast : Forcast){
+            weatherForcastDataBinding.weatherResponse = forcast
         }
     }
 

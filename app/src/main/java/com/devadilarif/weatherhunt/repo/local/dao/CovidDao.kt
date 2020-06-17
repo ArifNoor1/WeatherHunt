@@ -1,5 +1,6 @@
 package com.devadilarif.weatherhunt.repo.local.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -17,6 +18,6 @@ interface CovidDao {
     fun deleteCovid19(covid19: COVID19)
 
     @Query("SELECT * FROM COVID19")
-    fun getCovidUpdates(): Single<COVID19>
+    fun getCovidUpdates(): LiveData<COVID19>
 
 }

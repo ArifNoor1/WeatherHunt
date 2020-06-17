@@ -1,5 +1,6 @@
 package com.devadilarif.weatherhunt.repo.local.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.devadilarif.weatherhunt.repo.local.model.News
 import io.reactivex.Single
@@ -14,9 +15,9 @@ interface NewsDao {
     fun deleteNews(news : News)
 
     @Query("SELECT * FROM News")
-    fun getAllNews(): Single<List<News>>
+    fun getAllNews(): LiveData<List<News>>
 
     @Query("SELECT * FROM News ORDER BY timeStamp DESC LIMIT 3")
-    fun getTopNews(): Single<List<News>>
+    fun getTopNews(): LiveData<List<News>>
 
 }

@@ -3,7 +3,7 @@
     <data>
         <variable
             name="weatherResponse"
-            type="com.devadilarif.weatherhunt.repo.local.model.DailyForcast" />
+            type="com.devadilarif.weatherhunt.repo.local.model.Forcast" />
     </data>
     <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"

@@ -1,11 +1,13 @@
 package com.devadilarif.weatherhunt.repo.local.model
 
 import androidx.room.Entity
+import androidx.room.PrimaryKey
 
 
 @Entity
 data class COVID19(
-    val death_cases: String,
-    val recovery_cases: String,
-    val total_cases: String
+    @PrimaryKey
+    var death_cases: String,
+    var recovery_cases: String,
+    var total_cases: String
 )

@@ -1,8 +1,8 @@
 package com.devadilarif.weatherhunt.repo.local.model
 
 data class Weather(
-    val description: String,
-    val icon: String,
-    val id: Int,
-    val main: String
+    var description: String,
+    var icon: String,
+    var id: Int,
+    var main: String
 )

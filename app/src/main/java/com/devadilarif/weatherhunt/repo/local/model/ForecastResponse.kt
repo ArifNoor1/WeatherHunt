@@ -5,5 +5,5 @@ data class ForecastResponse(
     var lon : Double,
     var timezone : String,
     var timezone_offset : Long,
-    var daily : List<DailyForcast>
+    var daily : List<Forcast>
 )

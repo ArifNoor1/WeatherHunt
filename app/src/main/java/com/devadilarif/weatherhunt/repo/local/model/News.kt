@@ -2,25 +2,30 @@ package com.devadilarif.weatherhunt.repo.local.model
 
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
+import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.Ignore
+import androidx.room.PrimaryKey
 import com.devadilarif.weatherhunt.R
 import com.squareup.picasso.Picasso
 
 @Entity
 data class News(
-    val author: String,
-    val content: String,
-    val description: String,
+    var author: String,
+    var content: String,
+    var description: String,
 
-    @Ignore
-    val publishedAt: String,
+//    @Ignore
+    var publishedAt: String,
 
-    val source: Source,
-    val title: String,
-    val url: String,
-    val urlToImage: String,
-    val timeStamp : Double = publishedAt.toDouble()
+    @Embedded
+    var source: Source,
+    var title: String,
+    var url: String,
+    var urlToImage: String,
+
+    @PrimaryKey
+    var timeStamp : Double = publishedAt.toDouble()
 ){
 
     companion object{
