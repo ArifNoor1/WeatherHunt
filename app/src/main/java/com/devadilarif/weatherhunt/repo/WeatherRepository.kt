@@ -20,7 +20,7 @@ import timber.log.Timber
 import java.io.File
 import java.lang.NullPointerException
 
-class WeatherRepository(private val context : Context) : LocationListeners {
+class WeatherRepository(private val context : Context, private val owner : LifecycleOwner) : LocationListeners {
     private lateinit var locationManager : LocationManager
     private var disposables : CompositeDisposable
     private var db : WeatherHuntDatabase
@@ -54,7 +54,7 @@ class WeatherRepository(private val context : Context) : LocationListeners {
     }
 
     //return ROOM Query
-    fun getForecasts(owner : LifecycleOwner, onSuccess : (List<Forcast>)-> Unit) {
+    fun getForecasts(onSuccess : (List<Forcast>)-> Unit) {
        db.forecastDao().getWeeklyForecast().observe(owner, Observer {
            onSuccess(it)
        })
@@ -83,7 +83,7 @@ class WeatherRepository(private val context : Context) : LocationListeners {
 
 
     //return ROOM Query
-    fun getCurrentWeather(owner : LifecycleOwner, onSuccess: (WeatherResponse) -> Unit){
+    fun getCurrentWeather(onSuccess: (WeatherResponse) -> Unit){
         db.currentWeatherDao().getCurrentWeather().observe(owner, Observer{
             onSuccess(it)
         })
@@ -92,5 +92,9 @@ class WeatherRepository(private val context : Context) : LocationListeners {
     override fun onLastLocationFound(location: Location) {
 //        this.lastLocation = location
         requestForecasts(location)
+    }
+
+    fun onDestroy(){
+        disposables.clear()
     }
 }

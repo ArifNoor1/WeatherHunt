@@ -39,4 +39,8 @@ class CovidRepository(val owner : LifecycleOwner, val context : Context) {
             onSuccess(it)
         })
     }
+
+    fun onDestroy(){
+        disposables.clear()
+    }
 }

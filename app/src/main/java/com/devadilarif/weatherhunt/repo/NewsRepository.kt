@@ -61,4 +61,8 @@ class NewsRepository(val owner : LifecycleOwner, val context : Context) {
 //    fun getAllNews():LiveData<News>{
 //
 //    }
+
+    fun onDestroy(){
+        disposables.clear()
+    }
 }
