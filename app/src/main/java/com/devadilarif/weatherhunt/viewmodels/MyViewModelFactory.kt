@@ -12,7 +12,7 @@ class MyViewModelFactory<T : ViewModel>(
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalArgumentException::class)
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if(modelClass.isAssignableFrom(kClass::class.java)) return creator() as T
-        throw IllegalArgumentException()
+        if(modelClass.isAssignableFrom(kClass.java)) return creator() as T
+        throw IllegalArgumentException("Unknown class name")
     }
 }

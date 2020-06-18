@@ -23,8 +23,9 @@ class HomeFragmentViewModel(
     var covid19Data = MutableLiveData<COVID19>()
 
     init {
-        weatherRepository.getForecasts {
+        weatherRepository.getForecasts{
             weatherForecasts.postValue(it)
+
         }
         newsRepository.getTopHeadlines {
             topNews.postValue(it)

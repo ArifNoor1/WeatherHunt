@@ -41,6 +41,7 @@ class WeatherRepository(private val context : Context, private val owner : Lifec
             .subscribeOn(Schedulers.io())
             .observeOn(Schedulers.io())
             .subscribe({
+
                 val forecastDao = db.forecastDao()
                 it.daily.forEach{forcast->
                     forecastDao.insertForecast(forcast)

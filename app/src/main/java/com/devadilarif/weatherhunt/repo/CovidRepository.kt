@@ -36,7 +36,9 @@ class CovidRepository(val owner : LifecycleOwner, val context : Context) {
 
     fun getCovidUpdates(onSuccess : (COVID19)->Unit){
         db.covidDao().getCovidUpdates().observe(owner, Observer {
-            onSuccess(it)
+            if(it != null){
+                onSuccess(it)
+            }
         })
     }
 
