@@ -8,4 +8,11 @@
     <string name="sampleNewsDesc">The price of Bitcoin (BTC) could rise to as high as $12,000 within the next month, some traders say. Predictions for an extended uptrend emerged as the dominant cryptocurrency steadied amid declining</string>
 
     <string name="news">UN chief Antonio Guterres has warned that the COVID-19 pandemic will cause unimaginable devastation, usher in hunger and famine of historic proportions and lead to a loss of USD 8.5 trillion in global output — the sharpest contraction since the Great Depression — if nations did not respond </string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="enable_location">Enable Location</string>
+    <string name="location_permission_desc">By allowing geolocation, you are able to explore current location weather information</string>
+    <string name="storage_permission_desc">By allowing storage, you are able to save weather information for offline usage</string>
+    <string name="allow">Allow</string>
+    <string name="enable_storage">Enable Storage</string>
 </resources>
