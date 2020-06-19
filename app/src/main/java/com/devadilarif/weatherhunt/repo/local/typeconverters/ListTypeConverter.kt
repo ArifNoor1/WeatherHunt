@@ -5,7 +5,7 @@ import androidx.room.TypeConverters
 import com.devadilarif.weatherhunt.repo.local.model.Weather
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-
+import java.util.*
 
 
 class ListTypeConverter {
@@ -22,6 +22,8 @@ class ListTypeConverter {
     fun toJsonStringFromWeatherList(value: List<Weather>) : String{
         val gson = Gson()
         return gson.toJson(value)
+
+
     }
 
 
