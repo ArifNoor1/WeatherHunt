@@ -15,4 +15,5 @@
     <string name="storage_permission_desc">By allowing storage, you are able to save weather information for offline usage</string>
     <string name="allow">Allow</string>
     <string name="enable_storage">Enable Storage</string>
+    <string name="location_permission_not_given">Location Permission is required to access the app</string>
 </resources>
