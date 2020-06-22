@@ -33,7 +33,7 @@ class NewsAdapter(val topHeadlines : List<News>)  : RecyclerView.Adapter<NewsAda
         : RecyclerView.ViewHolder(newsDataBinding.root) {
 
         fun onBind(news : News){
-
+            newsDataBinding.news = news
         }
     }
 }

@@ -8,6 +8,7 @@ import androidx.room.PrimaryKey
 data class COVID19(
     @PrimaryKey
     var death_cases: String,
+
     var recovery_cases: String,
     var total_cases: String
 )

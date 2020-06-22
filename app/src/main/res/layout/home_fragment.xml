@@ -6,14 +6,8 @@
             name="vm"
             type="com.devadilarif.weatherhunt.viewmodels.HomeFragmentViewModel" />
     </data>
-    <com.facebook.shimmer.ShimmerFrameLayout
-        android:id="@+id/shimmer_view_container"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:shimmer_auto_start="true"
-        >
-        <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
+
+        <FrameLayout xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:context=".fragments.HomeFragment"
@@ -40,11 +34,10 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_weatherCards"
                     android:layout_below="@+id/tv_selectCardDate"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="21dp"
                     android:layout_marginBottom="27dp"
-                    tools:itemCount="9"
                     android:orientation="horizontal"/>
 
                 <TextView
@@ -58,7 +51,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_newsCards"
                     android:layout_below="@+id/tv_recentUpdateLabel"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="11dp"
                     tools:itemCount="9"
@@ -121,7 +114,7 @@
                         android:id="@+id/tv_activeCases"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="1021+"
+                        android:text="@{vm.covid19Data.total_cases}"
                         android:textSize="@dimen/smallFontSize"
                         app:layout_constraintBottom_toBottomOf="@+id/tv_deaths"
                         app:layout_constraintEnd_toEndOf="@+id/textView3"
@@ -132,7 +125,7 @@
                         android:id="@+id/tv_deaths"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="123+"
+                        android:text="@{vm.covid19Data.death_cases}"
                         android:textSize="@dimen/smallFontSize"
                         app:layout_constraintEnd_toEndOf="@+id/textView4"
                         app:layout_constraintStart_toStartOf="@+id/textView4"
@@ -142,7 +135,7 @@
                         android:id="@+id/tv_recovered"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="900+"
+                        android:text="@{vm.covid19Data.recovery_cases}"
                         android:textSize="@dimen/smallFontSize"
                         app:layout_constraintBottom_toBottomOf="@+id/tv_deaths"
                         app:layout_constraintEnd_toEndOf="@+id/textView5"
@@ -156,7 +149,6 @@
 
         </FrameLayout>
 
-    </com.facebook.shimmer.ShimmerFrameLayout>
 </layout>
 
 

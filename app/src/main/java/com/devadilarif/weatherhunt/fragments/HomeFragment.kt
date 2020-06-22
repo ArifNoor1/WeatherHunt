@@ -8,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.devadilarif.weatherhunt.R
 import com.devadilarif.weatherhunt.databinding.HomeFragmentBinding
 import com.devadilarif.weatherhunt.repo.CovidRepository
@@ -15,6 +17,7 @@ import com.devadilarif.weatherhunt.repo.NewsRepository
 import com.devadilarif.weatherhunt.repo.WeatherRepository
 import com.devadilarif.weatherhunt.viewmodels.HomeFragmentViewModel
 import com.devadilarif.weatherhunt.viewmodels.MyViewModelFactory
+import kotlinx.android.synthetic.main.home_fragment.*
 
 
 class HomeFragment : Fragment() {
@@ -58,8 +61,14 @@ class HomeFragment : Fragment() {
         viewModel = ViewModelProviders.of(activity!!,MyViewModelFactory(HomeFragmentViewModel::class){
             HomeFragmentViewModel(weatherRepository, newsRepository, covidRepository)
         }).get(HomeFragmentViewModel::class.java)
-        // TODO: Use the ViewModel
         binding.vm = viewModel
+
+        rv_newsCards.layoutManager = LinearLayoutManager(context)
+
+        //TODO: check the use of reverseLayout
+        rv_weatherCards.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL,false)
+        viewModel.setNewsAdapter(rv_newsCards)
+        viewModel.setWeatherForecastAdapter(rv_weatherCards)
 
     }
 

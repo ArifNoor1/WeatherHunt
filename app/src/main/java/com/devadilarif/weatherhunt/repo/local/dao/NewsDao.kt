@@ -8,7 +8,7 @@ import io.reactivex.Single
 @Dao
 interface NewsDao {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertNews(news : News)
 
     @Delete
@@ -17,7 +17,8 @@ interface NewsDao {
     @Query("SELECT * FROM News")
     fun getAllNews(): LiveData<List<News>>
 
-    @Query("SELECT * FROM News ORDER BY timeStamp DESC LIMIT 3")
+    //ORDER BY timeStamp DESC
+    @Query("SELECT * FROM News LIMIT 3")
     fun getTopNews(): LiveData<List<News>>
 
 }

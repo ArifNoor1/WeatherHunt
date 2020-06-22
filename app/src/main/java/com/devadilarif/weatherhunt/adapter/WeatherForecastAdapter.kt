@@ -9,7 +9,7 @@ import com.devadilarif.weatherhunt.databinding.WeatherItemBinding
 import com.devadilarif.weatherhunt.repo.local.model.Forcast
 import com.devadilarif.weatherhunt.repo.local.model.ForecastResponse
 
-class WeatherForecastAdapter(val forecastResponse: ForecastResponse) :
+class WeatherForecastAdapter(val forecasts: List<Forcast>) :
     RecyclerView.Adapter<WeatherForecastAdapter.WeatherForcastViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WeatherForcastViewHolder {
@@ -19,11 +19,11 @@ class WeatherForecastAdapter(val forecastResponse: ForecastResponse) :
     }
 
     override fun getItemCount(): Int {
-        return forecastResponse.daily.size
+        return forecasts.size
     }
 
     override fun onBindViewHolder(holder: WeatherForcastViewHolder, position: Int) {
-        holder.onBind(forecastResponse.daily[position])
+        holder.onBind(forecasts[position])
     }
 
     inner class WeatherForcastViewHolder(val weatherForcastDataBinding : WeatherItemBinding)

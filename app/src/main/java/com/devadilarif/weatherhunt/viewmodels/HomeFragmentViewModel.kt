@@ -1,8 +1,14 @@
 package com.devadilarif.weatherhunt.viewmodels
 
 import android.content.Context
+import android.location.Location
+import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.devadilarif.weatherhunt.adapter.NewsAdapter
+import com.devadilarif.weatherhunt.adapter.WeatherForecastAdapter
 import com.devadilarif.weatherhunt.repo.CovidRepository
 import com.devadilarif.weatherhunt.repo.NewsRepository
 import com.devadilarif.weatherhunt.repo.WeatherRepository
@@ -17,21 +23,42 @@ class HomeFragmentViewModel(
     private val covidRepository: CovidRepository
 ) : ViewModel() {
 
+    var covid19Data = ObservableField<COVID19>()
 
-    var weatherForecasts = MutableLiveData<List<Forcast>>()
-    var topNews = MutableLiveData<List<News>>()
-    var covid19Data = MutableLiveData<COVID19>()
-
+    //TODO: Default and secondry constuctor discussion
     init {
-        weatherRepository.getForecasts{
-            weatherForecasts.postValue(it)
-
-        }
-        newsRepository.getTopHeadlines {
-            topNews.postValue(it)
-        }
+        val location = Location("")
+        location.latitude =26.8467
+        location.longitude = 80.9462
+        covidRepository.requestCovidUpdates()
+        weatherRepository.requestForecasts(location)
+        newsRepository.requestNews()
+//        weatherRepository.re
         covidRepository.getCovidUpdates {
-            covid19Data.postValue(it)
+            covid19Data.set(it)
         }
     }
+
+    fun setWeatherForecastAdapter(recyclerView: RecyclerView){
+        var forecastAdapter = WeatherForecastAdapter(mutableListOf<Forcast>())
+        recyclerView.adapter = forecastAdapter
+        weatherRepository.getForecasts{
+            forecastAdapter = WeatherForecastAdapter(it)
+            forecastAdapter.notifyDataSetChanged()
+        }
+    }
+
+    //TODO: Discuss the background threading
+
+    fun setNewsAdapter(recyclerView: RecyclerView){
+        var newsAdapter = NewsAdapter(mutableListOf<News>())
+        recyclerView.adapter = newsAdapter
+        newsRepository.getTopHeadlines {
+            newsAdapter = NewsAdapter(it)
+            recyclerView.adapter = newsAdapter
+            newsAdapter.notifyDataSetChanged()
+        }
+    }
+
+
 }

@@ -19,10 +19,12 @@ class CovidRepository(val owner : LifecycleOwner, val context : Context) {
     init {
         disposables = CompositeDisposable()
         db = WeatherHuntDatabase.getInstance(context)
+
     }
+
     fun requestCovidUpdates(){
         disposables.add(
-            Networking.create(Networking.NEWS_BASE_URL, File(""), 1024)
+            Networking.create(Networking.COVID_19_BASE_URL, File(""), 1024)
                 .queryCovid19()
                 .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.io())
@@ -36,6 +38,7 @@ class CovidRepository(val owner : LifecycleOwner, val context : Context) {
 
     fun getCovidUpdates(onSuccess : (COVID19)->Unit){
         db.covidDao().getCovidUpdates().observe(owner, Observer {
+            Timber.d("getCovidUpdates() $it")
             if(it != null){
                 onSuccess(it)
             }
