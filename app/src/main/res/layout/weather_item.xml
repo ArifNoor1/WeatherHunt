@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="10dp"
-                android:text="Mostly Sunny"
+                android:text="@{weatherResponse.weather.get(0).description}"
                 android:textSize="@dimen/mediumFontSize" />
 
             <TextView
@@ -37,7 +37,7 @@
                 android:layout_below="@+id/tv_mostly_sunny"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="0dp"
-                android:text="25 °C"
+                android:text="@{weatherResponse.temp.getTempInCelcius() + `°C`}"
                 android:textSize="@dimen/veryLargeFontSize" />
 
         </RelativeLayout>

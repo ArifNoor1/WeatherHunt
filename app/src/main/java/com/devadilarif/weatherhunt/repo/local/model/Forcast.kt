@@ -4,6 +4,7 @@ import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.PrimaryKey
+import kotlin.math.roundToInt
 
 @Entity
 data class Forcast(
@@ -44,7 +45,12 @@ data class Forcast(
         var min: Double,
         var morn: Double,
         var night: Double
-    )
+    ){
+        fun getTempInCelcius(): String{
+            return (max - ("273.15").toFloat()).roundToInt().toString()
+        }
+    }
+
 
     
 }

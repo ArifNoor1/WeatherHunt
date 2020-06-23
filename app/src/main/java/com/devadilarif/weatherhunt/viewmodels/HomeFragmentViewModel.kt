@@ -44,6 +44,8 @@ class HomeFragmentViewModel(
         recyclerView.adapter = forecastAdapter
         weatherRepository.getForecasts{
             forecastAdapter = WeatherForecastAdapter(it)
+            recyclerView.adapter = forecastAdapter
+
             forecastAdapter.notifyDataSetChanged()
         }
     }
