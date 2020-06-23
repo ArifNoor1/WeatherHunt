@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:elevation="8dp">
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/imageView"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
