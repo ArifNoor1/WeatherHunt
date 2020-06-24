@@ -1,17 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <data>
+
         <variable
             name="vm"
             type="com.devadilarif.weatherhunt.viewmodels.HomeFragmentViewModel" />
     </data>
 
-        <FrameLayout xmlns:tools="http://schemas.android.com/tools"
+    <FrameLayout xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/margin"
+        tools:context=".fragments.HomeFragment">
+
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:context=".fragments.HomeFragment"
-            android:layout_margin="@dimen/margin">
+            android:layout_height="wrap_content"
+            android:scrollbars="none">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -22,49 +29,49 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Today"
-                    android:textSize="@dimen/largeFontSize"/>
+                    android:textSize="@dimen/largeFontSize" />
 
                 <TextView
+                    android:id="@+id/tv_selectCardDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/tv_selectCardDate"
                     android:layout_below="@+id/tv_selectCardDay"
-                    android:text="Wed, 20 April"/>
+                    android:text="Wed, 20 April" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_weatherCards"
-                    android:layout_below="@+id/tv_selectCardDate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_selectCardDate"
                     android:layout_marginTop="21dp"
                     android:layout_marginBottom="27dp"
-                    android:orientation="horizontal"/>
+                    android:orientation="horizontal" />
 
                 <TextView
+                    android:id="@+id/tv_recentUpdateLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/tv_recentUpdateLabel"
-                    android:textSize="@dimen/smallFontSize"
                     android:layout_below="@id/rv_weatherCards"
-                    android:text="@string/recentUpdateLabel"/>
+                    android:text="@string/recentUpdateLabel"
+                    android:textSize="@dimen/smallFontSize" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_newsCards"
-                    android:layout_below="@+id/tv_recentUpdateLabel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_recentUpdateLabel"
                     android:layout_marginTop="11dp"
-                    tools:itemCount="9"
                     android:layout_marginBottom="27dp"
-                    android:orientation="vertical"/>
+                    android:orientation="vertical"
+                    tools:itemCount="9" />
 
                 <TextView
+                    android:id="@+id/tv_covidUpdateLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/tv_covidUpdateLabel"
-                    android:textSize="@dimen/smallFontSize"
                     android:layout_below="@id/rv_newsCards"
-                    android:text="@string/covidUpdateLabel"/>
+                    android:text="@string/covidUpdateLabel"
+                    android:textSize="@dimen/smallFontSize" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -147,7 +154,9 @@
 
             </RelativeLayout>
 
-        </FrameLayout>
+        </ScrollView>
+
+    </FrameLayout>
 
 </layout>
 
