@@ -58,6 +58,12 @@ class NewsRepository(val owner : LifecycleOwner, val context : Context) {
         })
     }
 
+    fun getNews(onSuccess: (List<News>) -> Unit){
+        db.newsDao().getAllNews().observe(owner, Observer{
+            onSuccess(it)
+        })
+    }
+
 //    fun getAllNews():LiveData<News>{
 //
 //    }

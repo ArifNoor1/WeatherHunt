@@ -32,8 +32,15 @@ data class News(
     companion object{
         @BindingAdapter("imageUrl")
         @JvmStatic
-         fun loadImage(imageView : ImageView, newsImageUrl: String){
-            Picasso.get().load(newsImageUrl).into(imageView)
+         fun loadImage(imageView : ImageView, newsImageUrl: String?){
+            if(newsImageUrl != null){
+
+                Picasso.get().load(newsImageUrl).into(imageView)
+            }
+            else{
+                Picasso.get().load("https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg").into(imageView)
+
+            }
         }
     }
 }

@@ -11,23 +11,38 @@ class NewsFragmentViewModel(private val newsRepository: NewsRepository) : ViewMo
 
     var news = ObservableField<News>()
     private var newsList = arrayListOf<News>()
+
+    var nextTitle = ObservableField<String>("")
     private var currrentPosition = 0
     init {
-        newsRepository.getTopHeadlines { it ->
+        newsRepository.getNews { it ->
             news.set(it[0])
             it.forEach {
                 newsList.add(it) }
+            changeTitle()
+        }
+
+
+
+
+
+    }
+
+    fun changeTitle(){
+        if(!newsList.isEmpty() && currrentPosition < newsList.size - 1){
+            nextTitle.set(newsList[currrentPosition + 1].title)
         }
     }
 
-    fun getNextNewsTitle() : String{
-        return "Next Title"
-        /*if(currrentPosition != newsList.size - 1) newsList.get(currrentPosition + 1).title else newsList.get(currrentPosition).title*/
-    }
 
     fun changeNews(){
+
         currrentPosition++
         if(currrentPosition == newsList.size - 1) currrentPosition = 0
         news.set(newsList.get(currrentPosition))
+
+        changeTitle()
+
+
     }
 }
