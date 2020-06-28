@@ -23,7 +23,7 @@ class NewsRepository(val owner : LifecycleOwner, val context : Context) {
     }
 
     fun requestTopHeadlines(){
-        disposables.add(Networking.create(NEWS_BASE_URL, File(""), 1024)
+        disposables.add(Networking.create(NEWS_BASE_URL, File(""), 5 * 1024 * 1024)
             .queryTopHeadlines("in","technology")
             .subscribeOn(Schedulers.io())
             .observeOn(Schedulers.io())
@@ -38,7 +38,7 @@ class NewsRepository(val owner : LifecycleOwner, val context : Context) {
     }
 
     fun requestNews(){
-        disposables.add(Networking.create(NEWS_BASE_URL, File(""), 1024)
+        disposables.add(Networking.create(NEWS_BASE_URL, File(""), 5 * 1024 * 1024)
             .queryTopHeadlines("in","technology")
             .subscribeOn(Schedulers.io())
             .observeOn(Schedulers.io())

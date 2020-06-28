@@ -36,7 +36,7 @@ class WeatherRepository(private val context : Context, private val owner : Lifec
 
     //TODO: Add caching mechanism for API
     fun requestForecasts(location: Location) {
-      disposables.add(  Networking.create(WEATHER_BASE_URL, File(""),1024)
+      disposables.add(  Networking.create(WEATHER_BASE_URL, File(""),5 * 1024 * 1024)
             .queryWeeklyForcast(location.latitude, location.longitude)
             .subscribeOn(Schedulers.io())
             .observeOn(Schedulers.io())
@@ -67,7 +67,7 @@ class WeatherRepository(private val context : Context, private val owner : Lifec
      */
     fun requestCurrentWeather() {
         disposables.add(
-            Networking.create(WEATHER_BASE_URL, File(""), 1024)
+            Networking.create(WEATHER_BASE_URL, File(""), 5 * 1024 * 1024)
                 .queryCurrentWeather("Bangalore")
                 .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.io())
