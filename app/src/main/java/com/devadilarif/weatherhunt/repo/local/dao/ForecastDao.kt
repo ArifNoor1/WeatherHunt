@@ -3,13 +3,14 @@ package com.devadilarif.weatherhunt.repo.local.dao
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.devadilarif.weatherhunt.repo.local.model.Forcast
 
 @Dao
 interface ForecastDao {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertForecast(forcast: Forcast)
 
     @Query("SELECT * FROM Forcast ORDER BY dt LIMIT 7")

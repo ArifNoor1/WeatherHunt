@@ -15,6 +15,6 @@ interface WeatherResponseDao {
 
 
     //TODO: Add conflict strategy
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertCurrentWeather(currentWeatherResponse: WeatherResponse)
 }
