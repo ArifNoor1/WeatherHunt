@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
         <variable
             name="newsViewModel"
             type="com.devadilarif.weatherhunt.viewmodels.NewsFragmentViewModel" />
-
     </data>
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <FrameLayout
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -49,7 +49,7 @@
                     android:id="@+id/rl_sourceBanner"
                     android:layout_height="50dp"
                     android:layout_width="match_parent"
-                    android:layout_below="@+id/rl_topNewsLayout"
+                    android:layout_below="@id/rl_topNewsLayout"
                     android:background="@color/lightBackground"
                     android:padding="@dimen/margin">
                     <TextView

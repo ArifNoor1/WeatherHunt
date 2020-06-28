@@ -24,7 +24,7 @@ class CovidRepository(val owner : LifecycleOwner, val context : Context) {
 
     fun requestCovidUpdates(){
         disposables.add(
-            Networking.create(Networking.COVID_19_BASE_URL, File(""), 1024)
+            Networking.create(Networking.COVID_19_BASE_URL, File(""), 5 * 1024 * 1024)
                 .queryCovid19()
                 .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.io())
