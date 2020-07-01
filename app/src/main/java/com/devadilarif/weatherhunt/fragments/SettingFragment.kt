@@ -1,6 +1,7 @@
 package com.devadilarif.weatherhunt.fragments
 
 import android.app.Activity
+import android.content.Context.MODE_PRIVATE
 import android.content.Intent
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -26,10 +27,14 @@ class SettingFragment : Fragment() {
     private lateinit var viewModel: SettingFragmentViewModel
     private val pingActivityRequestCode = 1001
 
+    private val SETTING_SHARED_PREF = "SETTING_SHARED_PREF"
+    private val SELECTED_ADDRESS = "SELECTED_ADDRESS"
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        populateView()
         return inflater.inflate(R.layout.setting_fragment, container, false)
     }
 
@@ -40,6 +45,18 @@ class SettingFragment : Fragment() {
 
         tv_change.setOnClickListener {
             showPlacePicker()
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if ((requestCode == pingActivityRequestCode) && (resultCode == Activity.RESULT_OK)) {
+            val place: Place? = PingPlacePicker.getPlace(data!!)
+
+            tv_location_icon.text = place?.address
+            storeSelectedAddress(place?.address)
+            Toast.makeText(context, "You selected: ${place?.name}\n ${place?.id}", Toast.LENGTH_LONG).show()
         }
     }
 
@@ -61,15 +78,20 @@ class SettingFragment : Fragment() {
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
+    fun populateView(){
+        tv_location_icon.text = getAddress() ?: "Unknown Address"
+    }
 
-        if ((requestCode == pingActivityRequestCode) && (resultCode == Activity.RESULT_OK)) {
-            val place: Place? = PingPlacePicker.getPlace(data!!)
 
-            tv_location_icon.text = place?.address
-            Toast.makeText(context, "You selected: ${place?.name}\n ${place?.id}", Toast.LENGTH_LONG).show()
-        }
+
+    fun storeSelectedAddress(address : String?){
+        val sharedPreference = activity?.getSharedPreferences(SETTING_SHARED_PREF,MODE_PRIVATE)
+        sharedPreference?.edit()?.putString(SELECTED_ADDRESS,address)?.apply()
+    }
+
+    fun getAddress(): String?{
+        val sharedPreference = activity?.getSharedPreferences(SETTING_SHARED_PREF,MODE_PRIVATE)
+        return sharedPreference?.getString(SELECTED_ADDRESS,null)
     }
 
 }
