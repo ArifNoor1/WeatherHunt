@@ -37,7 +37,7 @@ data class WeatherResponse(
     var wind: Wind,
 
 
-    var lastFetchedTime : String
+    var lastFetchedTime : String?
 ){
     data class Clouds(
         var all: Int

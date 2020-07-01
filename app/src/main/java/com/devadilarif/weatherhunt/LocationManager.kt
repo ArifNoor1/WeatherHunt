@@ -12,6 +12,7 @@ import java.lang.ref.WeakReference
     1. Fetch the current location here
     2. Pass the current location to listeners
  */
+
 class LocationManager(private val context : Context) {
 
     private lateinit var fusedLocationClient: FusedLocationProviderClient

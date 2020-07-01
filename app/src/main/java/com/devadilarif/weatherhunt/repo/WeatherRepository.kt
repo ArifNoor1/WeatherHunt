@@ -61,14 +61,11 @@ class WeatherRepository(private val context : Context, private val owner : Lifec
     }
 
 
-    /*
-        1. Make API Request to current weather endpoint
-        2. Store the response in ROOM
-     */
-    fun requestCurrentWeather() {
+
+    fun requestCurrentWeather(location: Location) {
         disposables.add(
             Networking.create(WEATHER_BASE_URL, File(""), 5 * 1024 * 1024)
-                .queryCurrentWeather("Bangalore")
+                .queryCurrentWeather(location.latitude,location.longitude)
                 .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.io())
                 .subscribe({
@@ -92,6 +89,7 @@ class WeatherRepository(private val context : Context, private val owner : Lifec
     override fun onLastLocationFound(location: Location) {
 //        this.lastLocation = location
         requestForecasts(location)
+        requestCurrentWeather(location)
     }
 
     fun onDestroy(){

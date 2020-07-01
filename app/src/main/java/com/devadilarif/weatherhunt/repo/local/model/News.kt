@@ -14,7 +14,7 @@ import java.util.*
 data class News(
     var author: String?,
     var content: String?,
-    var description: String,
+    var description: String?,
 
 //    @Ignore
     @PrimaryKey
@@ -24,7 +24,7 @@ data class News(
     var source: Source,
     var title: String,
     var url: String,
-    var urlToImage: String
+    var urlToImage: String?
 
 //    var timeStamp : Double = Date()
 ){

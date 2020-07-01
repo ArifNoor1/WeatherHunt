@@ -13,7 +13,8 @@ interface NetworkService {
 
     @GET(EndPoints.CURRENT_WEATHER_END_POINT)
     fun queryCurrentWeather(
-        @Query("q") cityName : String,
+        @Query("lat") lat : Double,
+        @Query("lon") lon : Double,
         @Query("appid") appId : String = EndPoints.WEATHER_API_KEY
     ): Single<WeatherResponse>
 

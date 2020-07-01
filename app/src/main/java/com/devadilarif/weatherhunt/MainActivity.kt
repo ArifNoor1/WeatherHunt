@@ -1,5 +1,6 @@
 package com.devadilarif.weatherhunt
 
+import android.content.Intent
 import android.content.res.Resources
 import android.graphics.BlendMode
 import android.graphics.BlendModeColorFilter
@@ -80,6 +81,10 @@ class MainActivity : AppCompatActivity() , TabLayout.OnTabSelectedListener {
                 p0.icon =  getDrawable(R.drawable.ic_settingicon_dark)
             }
         }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
     }
 
 
