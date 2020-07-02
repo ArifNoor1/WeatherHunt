@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.devadilarif.weatherhunt.R
@@ -42,6 +43,11 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
+    fun handleViews(){
+        refreshLayoutHomeFragment.setOnRefreshListener {
+            viewModel.refreshData()
+        }
+    }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -69,6 +75,11 @@ class HomeFragment : Fragment() {
         rv_weatherCards.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL,false)
         viewModel.setNewsAdapter(rv_newsCards)
         viewModel.setWeatherForecastAdapter(rv_weatherCards)
+        viewModel.onNewsApiSuccess.observe(viewLifecycleOwner, Observer {
+           if(refreshLayoutHomeFragment.isRefreshing) refreshLayoutHomeFragment.isRefreshing = false
+
+        })
+        handleViews()
 
     }
 
