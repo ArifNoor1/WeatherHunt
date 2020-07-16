@@ -91,4 +91,6 @@ dependencies {
     // PING Place Picker
     implementation "com.github.rtchagas:pingplacepicker:2.0.+"
 
+    implementation 'com.azoft.carousellayoutmanager:carousel:1.2.4'
+
 }
