@@ -3,14 +3,34 @@ package com.devadilarif.weatherhunt
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.work.*
 import com.devadilarif.weatherhunt.fragments.LocationPermissionFragment
+import java.util.concurrent.TimeUnit
 
 
 class StartupActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_startup)
+        scheduleWork(TAG_MY_WORK)
         showFragment(LocationPermissionFragment())
+    }
+
+    val TAG_MY_WORK = "mywork"
+
+    fun scheduleWork(tag: String?) {
+        val notificationWork = PeriodicWorkRequest.Builder(
+            NotificationWorker::class.java, 16, TimeUnit.MINUTES
+        )
+        val constraints = Constraints.Builder()
+            .setRequiredNetworkType(NetworkType.CONNECTED)
+            .build()
+
+        val request = notificationWork
+            .setConstraints(constraints).build()
+
+        WorkManager.getInstance(this)
+            .enqueueUniquePeriodicWork(tag!!, ExistingPeriodicWorkPolicy.KEEP, request)
     }
 
     private fun showFragment(fragment : Fragment){

@@ -25,6 +25,7 @@ class HomeFragmentViewModel(
 
     var covid19Data = ObservableField<COVID19>()
 
+    var onNewsApiSuccess = MutableLiveData<Boolean>()
     //TODO: Default and secondry constuctor discussion
     init {
         val location = Location("")
@@ -32,7 +33,9 @@ class HomeFragmentViewModel(
         location.longitude = 80.9462
         covidRepository.requestCovidUpdates()
         weatherRepository.requestForecasts(location)
-        newsRepository.requestNews()
+        newsRepository.requestNews{
+
+        }
 //        weatherRepository.re
         covidRepository.getCovidUpdates {
             covid19Data.set(it)
@@ -59,6 +62,19 @@ class HomeFragmentViewModel(
             newsAdapter = NewsAdapter(it)
             recyclerView.adapter = newsAdapter
             newsAdapter.notifyDataSetChanged()
+
+            onNewsApiSuccess.postValue(true)
+        }
+    }
+
+    fun refreshData(){
+        covidRepository.requestCovidUpdates()
+        val location = Location("")
+        location.latitude =26.8467
+        location.longitude = 80.9462
+        weatherRepository.requestForecasts(location)
+        newsRepository.requestNews{
+            onNewsApiSuccess.postValue(it)
         }
     }
 

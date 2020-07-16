@@ -34,7 +34,6 @@ class SettingFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        populateView()
         return inflater.inflate(R.layout.setting_fragment, container, false)
     }
 
@@ -42,6 +41,7 @@ class SettingFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(SettingFragmentViewModel::class.java)
         // TODO: Use the ViewModel
+        populateView()
 
         tv_change.setOnClickListener {
             showPlacePicker()
