@@ -21,4 +21,6 @@
     <string name="key_google_apis_maps" translatable="false">@string/key_maps</string>
     <string name="key_maps" translatable="false">AIzaSyCcByr-5FBEZKbD2diHOhO2ogGaRjqo7oo</string>
     <string name="key_android" translatable="false">AIzaSyCcByr-5FBEZKbD2diHOhO2ogGaRjqo7oo</string>
+    <string name="channel_name">News Notification</string>
+    <string name="channel_description">It will show news notifications every 1 hour</string>
 </resources>
