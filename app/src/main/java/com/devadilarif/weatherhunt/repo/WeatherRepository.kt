@@ -25,9 +25,11 @@ class WeatherRepository(private val context : Context, private val owner : Lifec
     private var disposables : CompositeDisposable
     private var db : WeatherHuntDatabase
 
-//    private lateinit var lastLocation : Location
+    private var lastLocation : Location = Location("")
 
     init {
+        lastLocation.latitude = 26.8467
+        lastLocation.longitude = 80.9462
         locationManager = LocationManager(context)
         locationManager.addListener(this)
         disposables = CompositeDisposable()
@@ -35,9 +37,9 @@ class WeatherRepository(private val context : Context, private val owner : Lifec
     }
 
     //TODO: Add caching mechanism for API
-    fun requestForecasts(location: Location) {
+    fun requestForecasts() {
       disposables.add(  Networking.create(WEATHER_BASE_URL, File(""),5 * 1024 * 1024)
-            .queryWeeklyForcast(location.latitude, location.longitude)
+            .queryWeeklyForcast(lastLocation.latitude, lastLocation.longitude)
             .subscribeOn(Schedulers.io())
             .observeOn(Schedulers.io())
             .subscribe({
@@ -87,9 +89,9 @@ class WeatherRepository(private val context : Context, private val owner : Lifec
     }
 
     override fun onLastLocationFound(location: Location) {
-//        this.lastLocation = location
-        requestForecasts(location)
-        requestCurrentWeather(location)
+        this.lastLocation = location
+//        requestForecasts()
+//        requestCurrentWeather()
     }
 
     fun onDestroy(){

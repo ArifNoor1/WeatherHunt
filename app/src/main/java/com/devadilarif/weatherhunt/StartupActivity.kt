@@ -1,24 +1,47 @@
 package com.devadilarif.weatherhunt
 
-
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.devadilarif.weatherhunt.fragments.SplashFragment
+import androidx.fragment.app.Fragment
+import androidx.work.*
+import com.devadilarif.weatherhunt.fragments.LocationPermissionFragment
+import java.util.concurrent.TimeUnit
 
 
-class StartupActivity : AppCompatActivity(){
+class StartupActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_startup)
-
-        if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer,SplashFragment()).commit()
-//            Handler().postDelayed(this, 2000);
-        }
+        scheduleWork(TAG_MY_WORK)
+        showFragment(LocationPermissionFragment())
     }
 
+    val TAG_MY_WORK = "mywork"
 
+    fun scheduleWork(tag: String?) {
+        val notificationWork = PeriodicWorkRequest.Builder(
+            NotificationWorker::class.java, 16, TimeUnit.MINUTES
+        )
+        val constraints = Constraints.Builder()
+            .setRequiredNetworkType(NetworkType.CONNECTED)
+            .build()
 
+        val request = notificationWork
+            .setConstraints(constraints).build()
 
+        WorkManager.getInstance(this)
+            .enqueueUniquePeriodicWork(tag!!, ExistingPeriodicWorkPolicy.KEEP, request)
+    }
 
+    private fun showFragment(fragment : Fragment){
+        supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer,fragment).commit()
+    }
+
+    /*private fun loadFragment(fragment: Fragment) {
+            // load fragment
+            val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.frame_container, fragment)
+            transaction.addToBackStack(null)
+            transaction.commit()
+    }*/
 }
