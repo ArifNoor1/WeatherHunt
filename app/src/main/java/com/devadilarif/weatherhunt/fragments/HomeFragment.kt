@@ -75,7 +75,7 @@ class HomeFragment : Fragment() {
         rv_weatherCards.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL,false)
         viewModel.setNewsAdapter(rv_newsCards)
         viewModel.setWeatherForecastAdapter(rv_weatherCards)
-        viewModel.onNewsApiSuccess.observe(viewLifecycleOwner, Observer {
+        viewModel.onApiRefreshSuccess.observe(viewLifecycleOwner, Observer {
            if(refreshLayoutHomeFragment.isRefreshing) refreshLayoutHomeFragment.isRefreshing = false
 
         })
