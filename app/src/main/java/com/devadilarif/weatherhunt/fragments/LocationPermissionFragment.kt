@@ -36,7 +36,6 @@ class LocationPermissionFragment : Fragment() {
         return view
     }
 
-
     fun askLocationPermission(){
         if(checkSelfPermission(context!!,Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
             requestPermissions(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),LOCATION_PERMISSION_RC)

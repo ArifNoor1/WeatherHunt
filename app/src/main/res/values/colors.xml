@@ -6,4 +6,5 @@
     <color name="lightBackground">#D4D9DA</color>
     <color name="tabSelectedColor">#6791e0</color>
     <color name="tabUnselectedColor">#FFFFFF</color>
+    <color name="black">#000000</color>
 </resources>
