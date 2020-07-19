@@ -35,9 +35,9 @@
             android:layout_marginTop="5dp"
             android:layout_marginLeft="30dp"
             android:textSize="@dimen/smallFontSize"/>
-        <TextView
+        <Button
             android:id="@+id/tv_change"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/tv_location_icon"
             android:layout_marginLeft="40dp"
@@ -68,7 +68,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_notification_icon"
-            android:text="Bookmark"
+            android:text="Bookmark News"
             android:layout_marginTop="30dp"
             android:layout_marginLeft="10dp"
             android:textSize="@dimen/largeFontSize"/>
@@ -79,7 +79,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_bookmark"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="20dp">
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp">
         </androidx.recyclerview.widget.RecyclerView>
 
 
