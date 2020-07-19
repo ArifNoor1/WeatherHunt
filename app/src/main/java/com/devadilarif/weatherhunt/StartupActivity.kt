@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.work.*
 import com.devadilarif.weatherhunt.fragments.LocationPermissionFragment
+import com.devadilarif.weatherhunt.fragments.SplashFragment
 import java.util.concurrent.TimeUnit
 
 
@@ -13,7 +14,7 @@ class StartupActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_startup)
         scheduleWork(TAG_MY_WORK)
-        showFragment(LocationPermissionFragment())
+        showFragment(SplashFragment())
     }
 
     val TAG_MY_WORK = "mywork"
