@@ -41,6 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/tv_location_icon"
             android:layout_marginLeft="40dp"
+            android:background="@color/quantum_white_100"
             android:layout_marginTop="0dp"
             android:layout_below="@id/tv_location"
             android:text="Change"/>
