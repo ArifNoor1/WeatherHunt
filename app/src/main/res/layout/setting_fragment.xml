@@ -13,74 +13,85 @@
             android:id="@+id/tv_settings"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Settings"
-            android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
-            android:textSize="@dimen/largeFontSize"/>
+            android:layout_marginTop="10dp"
+            android:text="Settings"
+            android:textSize="@dimen/largeFontSize" />
+
         <TextView
             android:id="@+id/tv_location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_settings"
-            android:text="Location"
-            android:layout_marginTop="20dp"
             android:layout_marginLeft="30dp"
-            android:textSize="@dimen/mediumFontSize"/>
+            android:layout_marginTop="20dp"
+            android:text="Location"
+            android:textSize="@dimen/mediumFontSize" />
+
         <TextView
             android:id="@+id/tv_location_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_location"
-            android:text="  Kadugudi, whitefield Bangalore, Karnataka"
-            android:layout_marginTop="5dp"
             android:layout_marginLeft="30dp"
-            android:textSize="@dimen/smallFontSize"/>
-        <TextView
-            android:id="@+id/tv_change"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/tv_location_icon"
-            android:layout_marginLeft="40dp"
             android:layout_marginTop="5dp"
+            android:text="  Kadugudi, whitefield Bangalore, Karnataka"
+            android:textSize="@dimen/smallFontSize" />
+
+        <Button
+            android:id="@+id/tv_change"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
             android:layout_below="@id/tv_location"
+            android:layout_marginLeft="135dp"
+            android:layout_marginTop="0dp"
+            android:layout_toRightOf="@+id/tv_location_icon"
+            android:background="@color/quantum_white_100"
             android:text="Change"
-            android:textSize="@dimen/smallFontSize"/>
+            android:textAlignment="center"
+            android:textSize="@dimen/smallFontSize" />
+
         <TextView
             android:id="@+id/tv_notification"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_location_icon"
-            android:text="Notification"
-            android:layout_marginTop="10dp"
             android:layout_marginLeft="30dp"
-            android:textSize="@dimen/mediumFontSize"/>
-        <TextView
-            android:id="@+id/tv_notification_icon"
+            android:layout_marginTop="10dp"
+            android:checked="false"
+            android:text="Notification"
+            android:textSize="@dimen/mediumFontSize" />
+
+        <Switch
+            android:id="@+id/switchButton"
+            android:layout_below="@+id/tv_notification"
+            android:checked="false"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_notification"
-            android:text="  Enable notification news"
-            android:layout_marginTop="5dp"
             android:layout_marginLeft="30dp"
-            android:textSize="@dimen/smallFontSize"/>
+            android:layout_marginTop="5dp"
+            android:text="  Enable notification news"
+            android:textSize="@dimen/smallFontSize" />
+
         <TextView
             android:id="@+id/tv_bookmark"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_notification_icon"
-            android:text="Bookmark"
-            android:layout_marginTop="30dp"
+            android:layout_below="@+id/switchButton"
             android:layout_marginLeft="10dp"
-            android:textSize="@dimen/largeFontSize"/>
+            android:layout_marginTop="30dp"
+            android:text="Bookmark News"
+            android:textSize="@dimen/largeFontSize" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view_bookmark"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_bookmark"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="20dp">
-        </androidx.recyclerview.widget.RecyclerView>
+            android:layout_marginRight="10dp"></androidx.recyclerview.widget.RecyclerView>
 
 
     </RelativeLayout>
