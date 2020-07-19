@@ -114,6 +114,7 @@
                                 android:id="@+id/tv_deaths"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:paddingStart="14dp"
                                 android:text="@{vm.covid19Data.death_cases}"
                                 android:textSize="@dimen/smallFontSize"/>
 
@@ -144,6 +145,7 @@
                                 android:id="@+id/tv_activeCases"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:paddingStart="12dp"
                                 android:text="@{vm.covid19Data.total_cases}"
                                 android:textSize="@dimen/smallFontSize"/>
 
@@ -173,6 +175,7 @@
                                 android:id="@+id/tv_recovered"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:paddingStart="12dp"
                                 android:text="@{vm.covid19Data.recovery_cases}"
                                 android:textSize="@dimen/smallFontSize"/>
 
