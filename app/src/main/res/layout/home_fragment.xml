@@ -91,6 +91,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
                         android:layout_marginTop="39dp"
+                        android:alpha="0.6"
                         android:background="@color/tabUnselectedColor"
                         android:weightSum="3"
                         android:orientation="horizontal">
@@ -120,9 +121,9 @@
                         </LinearLayout>
 
                         <View
-                            android:layout_width="1dp"
+                            android:layout_width="0.7dp"
                             android:layout_marginRight="7dp"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:background="#FF0000FF" />
 
                         <LinearLayout
@@ -149,9 +150,9 @@
 
                         </LinearLayout>
                         <View
-                            android:layout_width="1dp"
+                            android:layout_width="0.7dp"
                             android:layout_marginRight="7dp"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:background="#FF0000FF" />
 
                         <LinearLayout
