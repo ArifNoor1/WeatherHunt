@@ -4,20 +4,23 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.work.*
-import com.devadilarif.weatherhunt.fragments.LocationPermissionFragment
 import com.devadilarif.weatherhunt.fragments.SplashFragment
 import java.util.concurrent.TimeUnit
 
 
 class StartupActivity : AppCompatActivity() {
+
+    companion object{
+        val NOTIFICATION_WORK_TAG = "mywork"
+
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_startup)
-        scheduleWork(TAG_MY_WORK)
+        scheduleWork(NOTIFICATION_WORK_TAG)
         showFragment(SplashFragment())
     }
 
-    val TAG_MY_WORK = "mywork"
 
     fun scheduleWork(tag: String?) {
         val notificationWork = PeriodicWorkRequest.Builder(

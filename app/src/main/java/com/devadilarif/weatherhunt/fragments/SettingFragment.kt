@@ -12,7 +12,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.work.WorkManager
 import com.devadilarif.weatherhunt.R
+import com.devadilarif.weatherhunt.StartupActivity.Companion.NOTIFICATION_WORK_TAG
 import com.devadilarif.weatherhunt.databinding.SettingFragmentBinding
 import com.devadilarif.weatherhunt.repo.NewsRepository
 import com.devadilarif.weatherhunt.viewmodels.MyViewModelFactory
@@ -37,6 +39,7 @@ class SettingFragment : Fragment() {
 
     private val SETTING_SHARED_PREF = "SETTING_SHARED_PREF"
     private val SELECTED_ADDRESS = "SELECTED_ADDRESS"
+    private val NOTIFICATION = "NOTIFICATION"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -64,6 +67,11 @@ class SettingFragment : Fragment() {
 
         tv_change.setOnClickListener {
             showPlacePicker()
+        }
+
+        switchButton.isChecked = getNotificationStatus()
+        switchButton.setOnCheckedChangeListener { _, isChecked ->
+            setNotification(isChecked)
         }
     }
 
@@ -112,5 +120,22 @@ class SettingFragment : Fragment() {
         val sharedPreference = activity?.getSharedPreferences(SETTING_SHARED_PREF,MODE_PRIVATE)
         return sharedPreference?.getString(SELECTED_ADDRESS,null)
     }
+
+    fun setNotification(status : Boolean){
+        val sharedPreference = activity?.getSharedPreferences(SETTING_SHARED_PREF,MODE_PRIVATE)
+        sharedPreference?.edit()?.putBoolean(NOTIFICATION,status)?.apply()
+
+        if(!status) disableWorkManager()
+    }
+
+    fun disableWorkManager(){
+        WorkManager.getInstance(context!!).cancelAllWorkByTag(NOTIFICATION_WORK_TAG)
+    }
+
+    fun getNotificationStatus(): Boolean{
+        val sharedPreference = activity?.getSharedPreferences(SETTING_SHARED_PREF,MODE_PRIVATE)
+        return sharedPreference?.getBoolean(NOTIFICATION,false) ?: false
+    }
+
 
 }

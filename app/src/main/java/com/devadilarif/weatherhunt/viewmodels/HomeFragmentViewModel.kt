@@ -4,11 +4,13 @@ import android.os.Handler
 import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.azoft.carousellayoutmanager.CarouselLayoutManager
 import com.azoft.carousellayoutmanager.CarouselZoomPostLayoutListener
 import com.azoft.carousellayoutmanager.CenterScrollListener
+import com.devadilarif.weatherhunt.SwipeController
 import com.devadilarif.weatherhunt.adapter.NewsAdapter
 import com.devadilarif.weatherhunt.adapter.WeatherForecastAdapter
 import com.devadilarif.weatherhunt.repo.CovidRepository
@@ -72,6 +74,7 @@ class HomeFragmentViewModel(
         var newsAdapter = NewsAdapter(mutableListOf<News>())
 
         recyclerView.adapter = newsAdapter
+
         newsRepository.getTopHeadlines {
             newsAdapter = NewsAdapter(it)
             recyclerView.adapter = newsAdapter

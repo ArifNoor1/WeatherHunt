@@ -22,7 +22,10 @@ class LocationManager(private val context : Context) {
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(context)
         fusedLocationClient.lastLocation.addOnSuccessListener {
             listeners.forEach { listener->
-                listener.get()?.onLastLocationFound(it)
+                if(it != null){
+                    listener.get()?.onLastLocationFound(it)
+
+                }
             }
         }
     }
