@@ -69,15 +69,23 @@
                 android:text="Notification"
                 android:textSize="@dimen/mediumFontSize" />
 
-            <Switch
-                android:id="@+id/switchButton"
+            <TextView
+                android:id="@+id/tv_enable_notification_news"
                 android:layout_below="@+id/tv_notification"
-                android:checked="false"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="5dp"
-                android:text="  Enable notification news"
+                android:text=" Enable notification news"
+                android:textSize="@dimen/smallFontSize" />
+            <Switch
+                android:id="@+id/switchButton"
+                android:checked="false"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_notification"
+                android:layout_marginLeft="110dp"
+                android:layout_toRightOf="@+id/tv_enable_notification_news"
                 android:textSize="@dimen/smallFontSize" />
 
             <TextView
@@ -98,7 +106,8 @@
                 android:layout_centerInParent="true"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"></androidx.recyclerview.widget.RecyclerView>
+                android:layout_marginRight="10dp">
+            </androidx.recyclerview.widget.RecyclerView>
 
 
         </RelativeLayout>
