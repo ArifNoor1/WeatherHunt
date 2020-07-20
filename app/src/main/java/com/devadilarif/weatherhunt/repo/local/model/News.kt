@@ -12,6 +12,7 @@ import java.util.*
 
 @Entity
 data class News(
+
     var author: String?,
     var content: String?,
     var description: String?,
@@ -24,7 +25,10 @@ data class News(
     var source: Source,
     var title: String,
     var url: String,
-    var urlToImage: String?
+    var urlToImage: String?,
+
+
+    var isBookmarked : Boolean
 
 //    var timeStamp : Double = Date()
 ){
@@ -42,5 +46,14 @@ data class News(
 
             }
         }
+
+
+    }
+    fun bookmark(){
+        isBookmarked = true
+    }
+
+    fun unbookmark(){
+        isBookmarked = false
     }
 }

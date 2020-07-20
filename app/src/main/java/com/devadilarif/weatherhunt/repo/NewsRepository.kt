@@ -9,6 +9,7 @@ import com.devadilarif.weatherhunt.repo.local.WeatherHuntDatabase
 import com.devadilarif.weatherhunt.repo.local.model.News
 import com.devadilarif.weatherhunt.repo.remote.Networking
 import com.devadilarif.weatherhunt.repo.remote.Networking.NEWS_BASE_URL
+import io.reactivex.Completable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
@@ -55,15 +56,57 @@ class NewsRepository(val owner : LifecycleOwner, val context : Context) {
     }
 
     fun getTopHeadlines(onSuccess : (List<News>) -> Unit){
+        val b  = db.newsDao().getAllNews().hasObservers()
+        val a= db.newsDao().getAllNews().hasActiveObservers()
+
+
         db.newsDao().getTopNews().observe(owner, Observer{
             onSuccess(it)
         })
     }
 
     fun getNews(onSuccess: (List<News>) -> Unit){
-        db.newsDao().getAllNews().observe(owner, Observer{
+        val b  = db.newsDao().getAllNews().hasObservers()
+        val a= db.newsDao().getAllNews().hasActiveObservers()
+
+//        var observer = Observer<List<News>>()
+       db.newsDao().getAllNews().observe(owner, Observer{
             onSuccess(it)
         })
+
+
+    }
+
+    fun getAllBookmarkedNews(onResult: (List<News>) -> Unit){
+        db.newsDao().getBookmarkedNews().observe(owner, Observer {
+            onResult(it)
+        })
+
+    }
+
+    fun bookmarkNews(news: News?){
+        Completable.fromAction{
+            news?.let {
+                it.bookmark()
+                db.newsDao().updateNews(it)
+            }
+        }.subscribeOn(Schedulers.io())
+        .subscribe()
+
+
+    }
+
+    fun unbookmarkNews(news : News?){
+        Completable.fromAction{
+            news?.let {
+                it.unbookmark()
+                db.newsDao().updateNews(it)
+            }
+        }.subscribeOn(Schedulers.io())
+            .subscribe()
+
+
+
     }
 
 //    fun getAllNews():LiveData<News>{
@@ -72,5 +115,6 @@ class NewsRepository(val owner : LifecycleOwner, val context : Context) {
 
     fun onDestroy(){
         disposables.clear()
+
     }
 }

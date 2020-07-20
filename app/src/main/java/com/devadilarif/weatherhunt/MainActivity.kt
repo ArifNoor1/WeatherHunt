@@ -48,16 +48,13 @@ class MainActivity : AppCompatActivity() , TabLayout.OnTabSelectedListener {
         Timber.d("onTabUnselected ${p0?.position}")
         when(p0?.position){
             0 -> {
-                showFragment(HomeFragment())
                 p0.icon =  getDrawable(R.drawable.ic_cloudicon_light)
             }
             1-> {
-                showFragment(NewsFragment())
                 p0.icon =  getDrawable(R.drawable.ic_newsicon)
 
             }
             2-> {
-                showFragment(SettingFragment())
                 p0.icon =  getDrawable(R.drawable.ic_settingicon)
 
             }
