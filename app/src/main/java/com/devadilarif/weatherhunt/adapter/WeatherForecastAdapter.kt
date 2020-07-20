@@ -1,6 +1,7 @@
 package com.devadilarif.weatherhunt.adapter
 
 import android.app.Activity
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
@@ -29,9 +30,6 @@ class WeatherForecastAdapter(val forecasts: List<Forcast>) :
 
     override fun onBindViewHolder(holder: WeatherForcastViewHolder, position: Int) {
         holder.onBind(forecasts[position])
-        holder.cardView.setOnClickListener {
-            holder.showWeatherFragment()
-        }
 
 
     }
@@ -40,31 +38,34 @@ class WeatherForecastAdapter(val forecasts: List<Forcast>) :
         : RecyclerView.ViewHolder(weatherForcastDataBinding.root) {
 
 
-        var cardView = weatherForcastDataBinding.root.card_view
 
         fun onBind(forcast : Forcast){
             weatherForcastDataBinding.weatherResponse = forcast
+            weatherForcastDataBinding.root.card_view.setOnClickListener {
+                showWeatherFragment(forcast)
+            }
 
         }
 
-        fun showWeatherFragment(){
-//            weatherForcastDataBinding.root.
-            var activity = weatherForcastDataBinding.root.context as AppCompatActivity
-            val myFragment: Fragment = WeatherFragment()
-            activity.supportFragmentManager.beginTransaction()
-                .replace(R.id.fragmentContainer, myFragment).addToBackStack(null).commit()
-
-        }
-
-
-        /*fun dataToFragment(forecast: Forcast, context: Context) {
-
+        fun showWeatherFragment(forecast : Forcast){
+            val activity = weatherForcastDataBinding.root.context as AppCompatActivity
             val weatherFragment = WeatherFragment()
+            //add Object Data to fragment
             val args = Bundle()
             args.putParcelable("DATA_FORECAST", forecast)
             weatherFragment.arguments = args
 
+            activity.supportFragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainer, weatherFragment).addToBackStack("backstack").commit()
 
+        }
+
+
+       /* fun dataToFragment(forecast: Forcast) {
+            val weatherFragment = WeatherFragment()
+            val args = Bundle()
+            args.putParcelable("DATA_FORECAST", forecast)
+            weatherFragment.arguments = args
 
         }*/
     }

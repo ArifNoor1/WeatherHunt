@@ -6,12 +6,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import com.devadilarif.weatherhunt.R
-import com.devadilarif.weatherhunt.repo.WeatherRepository
+import com.devadilarif.weatherhunt.databinding.HomeFragmentBinding
+import com.devadilarif.weatherhunt.databinding.WeatherFragmentBinding
+import com.devadilarif.weatherhunt.repo.local.model.Forcast
 import com.devadilarif.weatherhunt.viewmodels.MyViewModelFactory
-import com.devadilarif.weatherhunt.viewmodels.NewsFragmentViewModel
 import com.devadilarif.weatherhunt.viewmodels.WeatherFragmentViewModel
-
 
 class WeatherFragment : Fragment() {
 
@@ -21,22 +22,29 @@ class WeatherFragment : Fragment() {
     }
 
     private lateinit var viewModel: WeatherFragmentViewModel
-    private lateinit var weatherRepository : WeatherRepository
+    lateinit var binding : WeatherFragmentBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        weatherRepository = WeatherRepository(context!!,viewLifecycleOwner)
-        return inflater.inflate(R.layout.weather_fragment, container, false)
+
+        binding = DataBindingUtil.inflate(LayoutInflater.from(context),R.layout.weather_fragment,container,false)
+
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this, MyViewModelFactory(WeatherFragmentViewModel::class){
-            WeatherFragmentViewModel(weatherRepository)
-        }).get(WeatherFragmentViewModel::class.java)
-        // TODO: Use the ViewModel
+
+        arguments?.getParcelable<Forcast>("DATA_FORECAST").let {
+            viewModel = ViewModelProviders.of(this, MyViewModelFactory(WeatherFragmentViewModel::class){
+                WeatherFragmentViewModel(it)
+            }).get(WeatherFragmentViewModel::class.java)
+        }
+
+        binding.vm = viewModel
+
     }
 
 }
