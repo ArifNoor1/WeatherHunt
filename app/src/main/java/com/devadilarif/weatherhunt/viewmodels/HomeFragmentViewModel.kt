@@ -1,10 +1,14 @@
 package com.devadilarif.weatherhunt.viewmodels
 
-import android.location.Location
+import android.os.Handler
 import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.azoft.carousellayoutmanager.CarouselLayoutManager
+import com.azoft.carousellayoutmanager.CarouselZoomPostLayoutListener
+import com.azoft.carousellayoutmanager.CenterScrollListener
 import com.devadilarif.weatherhunt.adapter.NewsAdapter
 import com.devadilarif.weatherhunt.adapter.WeatherForecastAdapter
 import com.devadilarif.weatherhunt.repo.CovidRepository
@@ -58,7 +62,6 @@ class HomeFragmentViewModel(
         weatherRepository.getForecasts{
             forecastAdapter = WeatherForecastAdapter(it)
             recyclerView.adapter = forecastAdapter
-
             forecastAdapter.notifyDataSetChanged()
         }
     }
@@ -67,6 +70,7 @@ class HomeFragmentViewModel(
 
     fun setNewsAdapter(recyclerView: RecyclerView){
         var newsAdapter = NewsAdapter(mutableListOf<News>())
+
         recyclerView.adapter = newsAdapter
         newsRepository.getTopHeadlines {
             newsAdapter = NewsAdapter(it)
@@ -88,6 +92,11 @@ class HomeFragmentViewModel(
             onApiRefreshSuccess.postValue(it)
         }
     }
+//
+//    fun onStop(){
+//        cle
+//        newsRepository.onDestroy()
+//    }
 
 
 }

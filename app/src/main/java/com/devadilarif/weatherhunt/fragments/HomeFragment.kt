@@ -1,16 +1,20 @@
 package com.devadilarif.weatherhunt.fragments
 
 import android.content.Context
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout.HORIZONTAL
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.azoft.carousellayoutmanager.CarouselLayoutManager
+import com.azoft.carousellayoutmanager.CarouselZoomPostLayoutListener
+import com.azoft.carousellayoutmanager.CenterScrollListener
 import com.devadilarif.weatherhunt.R
 import com.devadilarif.weatherhunt.databinding.HomeFragmentBinding
 import com.devadilarif.weatherhunt.repo.CovidRepository
@@ -23,9 +27,9 @@ import kotlinx.android.synthetic.main.home_fragment.*
 
 class HomeFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = HomeFragment()
-    }
+//    companion object {
+//        fun newInstance() = HomeFragment()
+//    }
 
     private lateinit var viewModel: HomeFragmentViewModel
     lateinit var binding : HomeFragmentBinding
@@ -64,22 +68,34 @@ class HomeFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(activity!!,MyViewModelFactory(HomeFragmentViewModel::class){
+        viewModel = ViewModelProviders.of(this,MyViewModelFactory(HomeFragmentViewModel::class){
             HomeFragmentViewModel(weatherRepository, newsRepository, covidRepository)
         }).get(HomeFragmentViewModel::class.java)
         binding.vm = viewModel
 
         rv_newsCards.layoutManager = LinearLayoutManager(context)
-
-        //TODO: check the use of reverseLayout
-        rv_weatherCards.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL,false)
         viewModel.setNewsAdapter(rv_newsCards)
+
+
+        val layoutManager = LinearLayoutManager(context,RecyclerView.HORIZONTAL,false)
+        rv_weatherCards.layoutManager = layoutManager
         viewModel.setWeatherForecastAdapter(rv_weatherCards)
         viewModel.onApiRefreshSuccess.observe(viewLifecycleOwner, Observer {
            if(refreshLayoutHomeFragment.isRefreshing) refreshLayoutHomeFragment.isRefreshing = false
 
         })
         handleViews()
+
+    }
+
+    override fun onStop() {
+        super.onStop()
+
+//        viewModel.onStop()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
 
     }
 

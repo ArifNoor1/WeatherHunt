@@ -10,7 +10,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.devadilarif.weatherhunt.R
+import com.devadilarif.weatherhunt.databinding.SettingFragmentBinding
+import com.devadilarif.weatherhunt.repo.NewsRepository
+import com.devadilarif.weatherhunt.viewmodels.MyViewModelFactory
+import com.devadilarif.weatherhunt.viewmodels.NewsFragmentViewModel
 import com.devadilarif.weatherhunt.viewmodels.SettingFragmentViewModel
 import com.google.android.libraries.places.api.model.Place
 import com.rtchagas.pingplacepicker.PingPlacePicker
@@ -25,6 +31,8 @@ class SettingFragment : Fragment() {
     }
 
     private lateinit var viewModel: SettingFragmentViewModel
+    private lateinit var binding : SettingFragmentBinding
+    private lateinit var newsRepository : NewsRepository
     private val pingActivityRequestCode = 1001
 
     private val SETTING_SHARED_PREF = "SETTING_SHARED_PREF"
@@ -34,13 +42,24 @@ class SettingFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.setting_fragment, container, false)
+        binding =  DataBindingUtil.inflate(LayoutInflater.from(context),R.layout.setting_fragment,container,false)
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(SettingFragmentViewModel::class.java)
+        newsRepository = NewsRepository(viewLifecycleOwner,context!!)
+        viewModel = ViewModelProviders.of(this, MyViewModelFactory(SettingFragmentViewModel::class){
+            SettingFragmentViewModel(newsRepository)
+        }).get(SettingFragmentViewModel::class.java)
+
+
+            binding.vm = viewModel
         // TODO: Use the ViewModel
+
+        binding.recyclerViewBookmark.layoutManager = LinearLayoutManager(context)
+        viewModel.setAdapter(binding.recyclerViewBookmark)
+
         populateView()
 
         tv_change.setOnClickListener {

@@ -36,6 +36,7 @@
                             android:scaleType="centerCrop" />
 
 
+
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -61,7 +62,8 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
                             android:layout_alignParentRight="true"
-                            android:src="@drawable/ic_bookmark" />
+                            android:onClick="@{()-> newsViewModel.onBookmarkButtonClicked()}"
+                            />
                     </RelativeLayout>
 
                     <TextView
@@ -103,10 +105,15 @@
                     android:drawableEnd="@drawable/ic_arrow_forward_black"
                     android:onClick="@{()-> newsViewModel.changeNews()}"
                     android:text="@{newsViewModel.nextTitle}"
-                    android:textAlignment="textStart"
+
+                    android:textAlignment="center"
+                    android:padding="10dp"
                     android:background="@drawable/semitransparentbar"
-                    android:textSize="@dimen/mediumFontSize" />
+                    android:textSize="@dimen/mediumFontSize"
+                    android:maxLines="1"/>
             </RelativeLayout>
+
+
         </RelativeLayout>
 
 

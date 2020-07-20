@@ -12,11 +12,14 @@ class NewsFragmentViewModel(private val newsRepository: NewsRepository) : ViewMo
     var news = ObservableField<News>()
     private var newsList = arrayListOf<News>()
 
+    var isCurrentNewsBookmarked = MutableLiveData<Boolean>()
+
     var nextTitle = ObservableField<String>("")
     private var currrentPosition = 0
     init {
         newsRepository.getNews { it ->
             news.set(it[0])
+            isCurrentNewsBookmarked.value =  it[0].isBookmarked
             it.forEach {
                 newsList.add(it) }
             changeTitle()
@@ -36,13 +39,35 @@ class NewsFragmentViewModel(private val newsRepository: NewsRepository) : ViewMo
 
 
     fun changeNews(){
-
         currrentPosition++
         if(currrentPosition == newsList.size - 1) currrentPosition = 0
         news.set(newsList.get(currrentPosition))
+        isCurrentNewsBookmarked.value = news.get()!!.isBookmarked
 
         changeTitle()
+    }
 
+
+    fun onBookmarkButtonClicked(){
+        if(news.get() != null){
+            if(news.get()!!.isBookmarked){
+                onUnbookmark()
+                isCurrentNewsBookmarked.value = false
+            }else{
+                onBookmark()
+                isCurrentNewsBookmarked.value = true
+
+            }
+        }
 
     }
+    private fun onBookmark(){
+        newsRepository.bookmarkNews(news.get())
+    }
+
+    private fun onUnbookmark(){
+        newsRepository.unbookmarkNews(news.get())
+    }
+
+
 }

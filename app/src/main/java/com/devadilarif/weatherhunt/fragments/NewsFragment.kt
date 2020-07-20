@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import com.devadilarif.weatherhunt.R
 import com.devadilarif.weatherhunt.databinding.HomeFragmentBinding
 import com.devadilarif.weatherhunt.databinding.NewsFragmentBinding
@@ -14,6 +15,7 @@ import com.devadilarif.weatherhunt.repo.NewsRepository
 import com.devadilarif.weatherhunt.viewmodels.HomeFragmentViewModel
 import com.devadilarif.weatherhunt.viewmodels.MyViewModelFactory
 import com.devadilarif.weatherhunt.viewmodels.NewsFragmentViewModel
+import kotlinx.android.synthetic.main.news_fragment.*
 
 
 class NewsFragment : Fragment() {
@@ -38,10 +40,38 @@ class NewsFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(activity!!,MyViewModelFactory(NewsFragmentViewModel::class){
+        viewModel = ViewModelProviders.of(this,MyViewModelFactory(NewsFragmentViewModel::class){
             NewsFragmentViewModel(newsRepository)
         }).get(NewsFragmentViewModel::class.java)
         binding.newsViewModel = viewModel
+
+        viewModel.isCurrentNewsBookmarked.observe(viewLifecycleOwner, Observer {
+            if(it){
+               btn_bookmark.setImageResource(R.drawable.ic_bookmarked)
+            }else{
+                btn_bookmark.setImageResource(R.drawable.ic_bookmark)
+            }
+        })
+
+
+        tv_newsDescription.setOnClickListener {
+         showWebFragment()
+        }
+
+        tv_newsTitle.setOnClickListener {
+            showWebFragment()
+        }
+    }
+
+
+
+    fun showWebFragment(){
+        val fragment = WebFragment()
+        val data =  Bundle()
+        data.putString("newsLink",viewModel.news.get()!!.url)
+        fragment.arguments = data
+        activity?.supportFragmentManager?.beginTransaction()?.add(R.id.fragmentContainer,fragment)?.addToBackStack("backStack")?.commit()
+
     }
 
 }
