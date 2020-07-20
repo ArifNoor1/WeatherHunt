@@ -84,6 +84,14 @@ class HomeFragment : Fragment() {
            if(refreshLayoutHomeFragment.isRefreshing) refreshLayoutHomeFragment.isRefreshing = false
 
         })
+
+        viewModel.onDataLoaded.observe(viewLifecycleOwner, Observer {
+            if(it){
+                shimmer_view_container.stopShimmer()
+                shimmer_view_container.hideShimmer()
+            }
+
+        })
         handleViews()
 
     }

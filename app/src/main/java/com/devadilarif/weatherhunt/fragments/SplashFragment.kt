@@ -13,13 +13,13 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentManager
 import com.devadilarif.weatherhunt.MainActivity
 import com.devadilarif.weatherhunt.R
-
+import kotlinx.android.synthetic.main.fragment_splash.*
 
 
 class SplashFragment : Fragment() {
 
 
-    private val SPLASH_TIME_OUT = 3000L
+    private val SPLASH_TIME_OUT = 5000L
 
 
     override fun onCreateView(
@@ -63,6 +63,7 @@ class SplashFragment : Fragment() {
         context?.startActivity(Intent(activity, MainActivity::class.java))
         activity?.finish()
     }
+
 
 
 }

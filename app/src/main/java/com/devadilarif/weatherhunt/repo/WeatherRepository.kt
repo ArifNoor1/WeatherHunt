@@ -57,8 +57,11 @@ class WeatherRepository(private val context : Context, private val owner : Lifec
 
     //return ROOM Query
     fun getForecasts(onSuccess : (List<Forcast>)-> Unit) {
+
        db.forecastDao().getWeeklyForecast().observe(owner, Observer {
-           onSuccess(it)
+           if(it.isNotEmpty()){
+               onSuccess(it)
+           }
        })
     }
 
@@ -90,7 +93,7 @@ class WeatherRepository(private val context : Context, private val owner : Lifec
 
     override fun onLastLocationFound(location: Location) {
         this.lastLocation = location
-//        requestForecasts()
+        requestForecasts()
 //        requestCurrentWeather()
     }
 

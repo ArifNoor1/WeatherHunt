@@ -12,7 +12,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.work.WorkManager
+import androidx.work.*
+import com.devadilarif.weatherhunt.NotificationWorker
 import com.devadilarif.weatherhunt.R
 import com.devadilarif.weatherhunt.StartupActivity.Companion.NOTIFICATION_WORK_TAG
 import com.devadilarif.weatherhunt.databinding.SettingFragmentBinding
@@ -23,6 +24,7 @@ import com.devadilarif.weatherhunt.viewmodels.SettingFragmentViewModel
 import com.google.android.libraries.places.api.model.Place
 import com.rtchagas.pingplacepicker.PingPlacePicker
 import kotlinx.android.synthetic.main.setting_fragment.*
+import java.util.concurrent.TimeUnit
 
 
 class SettingFragment : Fragment() {
@@ -126,10 +128,28 @@ class SettingFragment : Fragment() {
         sharedPreference?.edit()?.putBoolean(NOTIFICATION,status)?.apply()
 
         if(!status) disableWorkManager()
+        else enableWorkManager()
     }
 
     fun disableWorkManager(){
         WorkManager.getInstance(context!!).cancelAllWorkByTag(NOTIFICATION_WORK_TAG)
+    }
+
+    fun enableWorkManager(){
+        fun scheduleWork(tag: String?) {
+            val notificationWork = PeriodicWorkRequest.Builder(
+                NotificationWorker::class.java, 16, TimeUnit.MINUTES
+            )
+            val constraints = Constraints.Builder()
+                .setRequiredNetworkType(NetworkType.CONNECTED)
+                .build()
+
+            val request = notificationWork
+                .setConstraints(constraints).build()
+
+            WorkManager.getInstance(context!!)
+                .enqueueUniquePeriodicWork(tag!!, ExistingPeriodicWorkPolicy.KEEP, request)
+        }
     }
 
     fun getNotificationStatus(): Boolean{

@@ -56,22 +56,20 @@ class NewsRepository(val owner : LifecycleOwner, val context : Context) {
     }
 
     fun getTopHeadlines(onSuccess : (List<News>) -> Unit){
-        val b  = db.newsDao().getAllNews().hasObservers()
-        val a= db.newsDao().getAllNews().hasActiveObservers()
-
 
         db.newsDao().getTopNews().observe(owner, Observer{
-            onSuccess(it)
+            if(it.isNotEmpty()){
+                onSuccess(it)
+            }
         })
     }
 
     fun getNews(onSuccess: (List<News>) -> Unit){
-        val b  = db.newsDao().getAllNews().hasObservers()
-        val a= db.newsDao().getAllNews().hasActiveObservers()
-
 //        var observer = Observer<List<News>>()
        db.newsDao().getAllNews().observe(owner, Observer{
-            onSuccess(it)
+           if(it.isNotEmpty()){
+               onSuccess(it)
+           }
         })
 
 

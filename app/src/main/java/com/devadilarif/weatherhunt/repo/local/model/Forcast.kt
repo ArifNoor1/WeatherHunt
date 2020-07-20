@@ -51,6 +51,7 @@ data class Forcast(
         var night: Double
     ): Parcelable{
         fun getTempInCelcius(): String{
+            if(max == 0.0) return ""
             return (max - ("273.15").toFloat()).roundToInt().toString() + "°C"
         }
     }
