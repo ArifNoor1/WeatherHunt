@@ -1,11 +1,15 @@
 package com.devadilarif.weatherhunt.repo.local.model
 
+import android.os.Parcelable
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.PrimaryKey
+import kotlinx.android.parcel.IgnoredOnParcel
+import kotlinx.android.parcel.Parcelize
 import kotlin.math.roundToInt
 
+@Parcelize
 @Entity
 data class Forcast(
     var clouds: Int,
@@ -30,14 +34,14 @@ data class Forcast(
     var weather: List<Weather>,
     var wind_deg: Int,
     var wind_speed: Double
-){
+) : Parcelable{
     data class FeelsLike(
         var day: Double,
         var eve: Double,
         var morn: Double,
         var night: Double
     )
-
+    @Parcelize
     data class Temp(
         var day: Double,
         var eve: Double,
@@ -45,12 +49,18 @@ data class Forcast(
         var min: Double,
         var morn: Double,
         var night: Double
-    ){
+    ): Parcelable{
         fun getTempInCelcius(): String{
-            return (max - ("273.15").toFloat()).roundToInt().toString()
+            return (max - ("273.15").toFloat()).roundToInt().toString() + "°C"
         }
     }
 
+    fun getHumidityInString(): String{
+        return humidity.toString() + "%"
+    }
 
+    fun getWindSpeedInString(): String{
+        return (wind_speed.toFloat()).roundToInt().toString() + "Km/h"
+    }
     
 }

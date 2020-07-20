@@ -1,18 +1,22 @@
 package com.devadilarif.weatherhunt.viewmodels
-import androidx.lifecycle.MutableLiveData
+
+import androidx.databinding.ObservableField
 import androidx.lifecycle.ViewModel
-import com.devadilarif.weatherhunt.repo.WeatherRepository
-import com.devadilarif.weatherhunt.repo.local.model.WeatherResponse
+import com.devadilarif.weatherhunt.repo.local.model.Forcast
 
-class WeatherFragmentViewModel(private val weatherRepository: WeatherRepository) : ViewModel() {
+class WeatherFragmentViewModel(private val forecast: Forcast?) : ViewModel() {
 
-    var currentWeather = MutableLiveData<WeatherResponse>()
+    var weatherOfTheDay = ObservableField<Forcast>()
+    lateinit var weather: Forcast
 
     init {
-        weatherRepository.getCurrentWeather {
-            currentWeather.postValue(it)
-        }
+        weatherOfTheDay.set(forecast)
+        weather = forecast!!
     }
 
 
+
 }
+
+
+
